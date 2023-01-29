@@ -13,7 +13,8 @@ struct SignInScreenView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isPresentedReader = false
-    
+    @State private var isPresentedMenu = false
+
     
     var body: some View {
         ZStack {
@@ -43,19 +44,17 @@ struct SignInScreenView: View {
                         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                         .padding(.vertical)
                     
-                    PrimaryButton(title: "Accedi").padding(.vertical)
-                                                 
+                    PrimaryButton(title: "Accedi").padding(.vertical).fullScreenCover(isPresented: $isPresentedMenu, content: {
+                        MenuView()
+                    })
                     SocalLoginButton(image:  Image(systemName: "highlighter"), text: Text("Registrati"))
-                   
                     SocalLoginButton(image: Image(systemName: "paperplane"), text: Text("Condividi").foregroundColor(Color("PrimaryColor")))
                         .padding(.vertical)
                 }
-                
                 Spacer()
                 Divider()
                 Spacer()
                 Text("Leggi tutto")
-                
                 Text("Terms & Conditions.")
                     .onTapGesture() {
                             isPresentedReader.toggle()
