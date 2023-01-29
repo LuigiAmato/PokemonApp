@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        //WelcomeScreenView()
-        ReaderPage(url: "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf")
+        WelcomeScreenView()
     }
 }
 

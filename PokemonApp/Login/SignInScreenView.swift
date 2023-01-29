@@ -10,7 +10,11 @@ import SwiftUI
 struct SignInScreenView: View {
     
     @ObservedObject var viewModel: SignInViewModel
-    @State private var email: String = "" // by default it's empty
+    @State private var email: String = ""
+    @State private var isPresentedReader = false
+
+    
+    
     var body: some View {
         ZStack {
             Color("BgColor").edgesIgnoringSafeArea(.all)
@@ -49,7 +53,13 @@ struct SignInScreenView: View {
                 Spacer()
                 Text("You are completely safe.")
                 Text("Read our Terms & Conditions.")
+                    .onTapGesture() {
+                            print("Double tapped!")
+                            isPresentedReader.toggle()
+                        }
                     .foregroundColor(Color("PrimaryColor"))
+                    .fullScreenCover(isPresented: $isPresentedReader, content: ReaderPage.init)
+
                 Spacer()
                 
             }

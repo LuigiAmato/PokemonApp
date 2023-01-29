@@ -17,7 +17,6 @@ struct WelcomeScreenView: View {
                     Image(uiImage: #imageLiteral(resourceName: "onboard")).resizable().frame(width: 250,height: 195)
                     Spacer()
                     PrimaryButton(title: "Get Started")
-                    
                     NavigationLink(
                         destination: SignInScreenView(viewModel: SignInViewModel()).navigationBarHidden(true),
                         label: {
@@ -33,7 +32,6 @@ struct WelcomeScreenView: View {
                                 .padding(.vertical)
                         })
                         .navigationBarHidden(true)
-                    
                     HStack {
                         Text("New around here? ")
                         Text("Sign in")
