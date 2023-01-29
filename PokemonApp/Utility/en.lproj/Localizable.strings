@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  PokemonApp
+
+  Created by Amato, Luigi on 29/01/23.
+  
+*/
+
+"save" = "Save";
+"exit" = "Exit";
+"terms&condition" = "Terms & Condition";
+"read" = "Leggi";

@@ -11,8 +11,8 @@ struct SignInScreenView: View {
     
     @ObservedObject var viewModel: SignInViewModel
     @State private var email: String = ""
+    @State private var password: String = ""
     @State private var isPresentedReader = false
-
     
     
     var body: some View {
@@ -20,22 +20,21 @@ struct SignInScreenView: View {
             Color("BgColor").edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
-                
                 VStack {
-                    Text("Sign In")
+                    Text("Login")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.bottom, 30)
                     
-                    SocalLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "apple")), text: Text("Sign in with Apple"))
-                    
-                    SocalLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "google")), text: Text("Sign in with Google").foregroundColor(Color("PrimaryColor")))
-                        .padding(.vertical)
-                    
-                    Text("or get a link emailed to you")
-                        .foregroundColor(Color.black.opacity(0.4))
-                    
-                    TextField("Work email address", text: $email)
+                    TextField("Username", text: $email)
+                        .font(.title3)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.white)
+                        .cornerRadius(50.0)
+                        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+                      
+                    SecureField("Password", text: $password)
                         .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -44,21 +43,27 @@ struct SignInScreenView: View {
                         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                         .padding(.vertical)
                     
-                    PrimaryButton(title: "Email me a signup link")
-                    
+                    PrimaryButton(title: "Accedi").padding(.vertical)
+                                                 
+                    SocalLoginButton(image:  Image(systemName: "highlighter"), text: Text("Registrati"))
+                   
+                    SocalLoginButton(image: Image(systemName: "paperplane"), text: Text("Condividi").foregroundColor(Color("PrimaryColor")))
+                        .padding(.vertical)
                 }
                 
                 Spacer()
                 Divider()
                 Spacer()
-                Text("You are completely safe.")
-                Text("Read our Terms & Conditions.")
+                Text("Leggi tutto")
+                
+                Text("Terms & Conditions.")
                     .onTapGesture() {
-                            print("Double tapped!")
                             isPresentedReader.toggle()
                         }
                     .foregroundColor(Color("PrimaryColor"))
-                    .fullScreenCover(isPresented: $isPresentedReader, content: ReaderPage.init)
+                    .fullScreenCover(isPresented: $isPresentedReader, content: {
+                        ReaderPage(url: "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf",titlePage: "")
+                    })
 
                 Spacer()
                 
@@ -86,6 +91,7 @@ struct SocalLoginButton: View {
             Spacer()
             text
                 .font(.title2)
+            Spacer()
             Spacer()
         }
         .padding()

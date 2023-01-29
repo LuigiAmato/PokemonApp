@@ -10,21 +10,26 @@ import WebKit
 
 struct ReaderPage: View {
     @Environment(\.dismiss) var dismiss
-    public var url:String = "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf"
+    public var url:String!
+    public var titlePage:String!
+     
     var body: some View {
         NavigationStack(){
             WebView(url: url)
                 .toolbar {
-                Button("Close") {
-                    print("About tapped!")
-                    self.dismiss()
-                }
-                Button("Shared") {
-                    print("Help tapped!")
-                }
-            }.navigationTitle("Reader Page")
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(NSLocalizedString("Exit", comment: ""),action: {
+                            dismiss()
+                        })
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(NSLocalizedString("Save", comment: "")
+                               , action: {
+                            
+                        })
+                    }
+                }.navigationTitle(titlePage)
         }
-       
     }
 }
 
@@ -48,6 +53,6 @@ struct WebView: UIViewRepresentable {
 
 struct ReaderPage_Previews: PreviewProvider {
     static var previews: some View {
-        ReaderPage(url: "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf")
+        ReaderPage(url: "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf",titlePage:"Title")
     }
 }

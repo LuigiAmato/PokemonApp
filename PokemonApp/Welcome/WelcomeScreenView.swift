@@ -16,11 +16,11 @@ struct WelcomeScreenView: View {
                     Spacer()
                     Image(uiImage: #imageLiteral(resourceName: "onboard")).resizable().frame(width: 250,height: 195)
                     Spacer()
-                    PrimaryButton(title: "Get Started")
+                    PrimaryButton(title: "Tour")
                     NavigationLink(
                         destination: SignInScreenView(viewModel: SignInViewModel()).navigationBarHidden(true),
                         label: {
-                            Text("Sign In")
+                            Text("Login")
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color("PrimaryColor"))
@@ -33,9 +33,7 @@ struct WelcomeScreenView: View {
                         })
                         .navigationBarHidden(true)
                     HStack {
-                        Text("New around here? ")
-                        Text("Sign in")
-                            .foregroundColor(Color("PrimaryColor"))
+                        Text("Version 1.0")
                     }
                 }
                 .padding()

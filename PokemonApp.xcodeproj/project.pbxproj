@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C63000742986CD0300E80620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C63000762986CD0300E80620 /* Localizable.strings */; };
 		C65A608D298408A40013CD5C /* PokemonAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A608C298408A40013CD5C /* PokemonAppApp.swift */; };
 		C65A608F298408A40013CD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A608E298408A40013CD5C /* ContentView.swift */; };
 		C65A6091298408A60013CD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C65A6090298408A60013CD5C /* Assets.xcassets */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C63000752986CD0300E80620 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C63000772986CD0700E80620 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C65A6089298408A40013CD5C /* PokemonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C65A608C298408A40013CD5C /* PokemonAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAppApp.swift; sourceTree = "<group>"; };
 		C65A608E298408A40013CD5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +96,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C63000782986D5A300E80620 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
 		C65A6080298408A40013CD5C = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +172,7 @@
 				C6FCD4D529866A3B00510D9E /* Log.swift */,
 				C6FCD4D829866A9100510D9E /* Analytics.swift */,
 				C6FCD4F229867F0C00510D9E /* ReaderPage.swift */,
+				C63000762986CD0300E80620 /* Localizable.strings */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -178,6 +189,7 @@
 		C6FCD4CB298662D800510D9E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C63000782986D5A300E80620 /* Tab */,
 				C6FCD4CE298662F100510D9E /* Page3 */,
 				C6FCD4CD298662E900510D9E /* Page2 */,
 				C6FCD4CC298662E200510D9E /* Page1 */,
@@ -328,6 +340,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = C65A6080298408A40013CD5C;
 			packageReferences = (
@@ -349,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C65A6094298408A60013CD5C /* Preview Assets.xcassets in Resources */,
+				C63000742986CD0300E80620 /* Localizable.strings in Resources */,
 				C65A6091298408A60013CD5C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +435,18 @@
 			targetProxy = C65A60A4298408A60013CD5C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C63000762986CD0300E80620 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C63000752986CD0300E80620 /* en */,
+				C63000772986CD0700E80620 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C65A60AB298408A60013CD5C /* Debug */ = {
