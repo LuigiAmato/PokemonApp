@@ -46,7 +46,9 @@ struct SignInScreenView: View {
                     
                     PrimaryButton(title: "Accedi").padding(.vertical).fullScreenCover(isPresented: $isPresentedMenu, content: {
                         MenuView()
-                    })
+                    }).onTapGesture {
+                        isPresentedMenu.toggle()
+                    }
                     SocalLoginButton(image:  Image(systemName: "highlighter"), text: Text("Registrati"))
                     SocalLoginButton(image: Image(systemName: "paperplane"), text: Text("Condividi").foregroundColor(Color("PrimaryColor")))
                         .padding(.vertical)
