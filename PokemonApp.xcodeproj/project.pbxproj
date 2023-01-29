@@ -14,6 +14,14 @@
 		C65A609E298408A60013CD5C /* PokemonAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A609D298408A60013CD5C /* PokemonAppTests.swift */; };
 		C65A60A8298408A60013CD5C /* PokemonAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A60A7298408A60013CD5C /* PokemonAppUITests.swift */; };
 		C65A60AA298408A60013CD5C /* PokemonAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A60A9298408A60013CD5C /* PokemonAppUITestsLaunchTests.swift */; };
+		C6FCD4D22986639800510D9E /* console.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D02986639800510D9E /* console.xcdatamodeld */; };
+		C6FCD4D4298663C000510D9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D3298663C000510D9E /* CoreDataManager.swift */; };
+		C6FCD4D629866A3B00510D9E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D529866A3B00510D9E /* Log.swift */; };
+		C6FCD4D929866A9100510D9E /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D829866A9100510D9E /* Analytics.swift */; };
+		C6FCD4DE29866BF800510D9E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4DD29866BF800510D9E /* WelcomeScreenView.swift */; };
+		C6FCD4E129866F9400510D9E /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4E029866F9400510D9E /* PrimaryButton.swift */; };
+		C6FCD4E329866FD500510D9E /* SignInScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4E229866FD500510D9E /* SignInScreenView.swift */; };
+		C6FCD4E52986778F00510D9E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4E42986778F00510D9E /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		C65A60A3298408A60013CD5C /* PokemonAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C65A60A7298408A60013CD5C /* PokemonAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAppUITests.swift; sourceTree = "<group>"; };
 		C65A60A9298408A60013CD5C /* PokemonAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C6FCD4D12986639800510D9E /* console.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = console.xcdatamodel; sourceTree = "<group>"; };
+		C6FCD4D3298663C000510D9E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C6FCD4D529866A3B00510D9E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		C6FCD4D829866A9100510D9E /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		C6FCD4DD29866BF800510D9E /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
+		C6FCD4E029866F9400510D9E /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		C6FCD4E229866FD500510D9E /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
+		C6FCD4E42986778F00510D9E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,9 @@
 		C65A608B298408A40013CD5C /* PokemonApp */ = {
 			isa = PBXGroup;
 			children = (
+				C6FCD4DF29866F8600510D9E /* Common */,
+				C6FCD4DA29866BD300510D9E /* Welcome */,
+				C6FCD4CF2986635B00510D9E /* Database */,
 				C6FCD4CB298662D800510D9E /* Home */,
 				C6FCD4CA298662D000510D9E /* Login */,
 				C6FCD4C9298662C400510D9E /* Utility */,
@@ -133,6 +152,8 @@
 		C6FCD4C9298662C400510D9E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				C6FCD4D529866A3B00510D9E /* Log.swift */,
+				C6FCD4D829866A9100510D9E /* Analytics.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -140,6 +161,7 @@
 		C6FCD4CA298662D000510D9E /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				C6FCD4E229866FD500510D9E /* SignInScreenView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -173,6 +195,32 @@
 			children = (
 			);
 			path = Page3;
+			sourceTree = "<group>";
+		};
+		C6FCD4CF2986635B00510D9E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				C6FCD4D02986639800510D9E /* console.xcdatamodeld */,
+				C6FCD4D3298663C000510D9E /* CoreDataManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		C6FCD4DA29866BD300510D9E /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				C6FCD4DD29866BF800510D9E /* WelcomeScreenView.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		C6FCD4DF29866F8600510D9E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C6FCD4E029866F9400510D9E /* PrimaryButton.swift */,
+				C6FCD4E42986778F00510D9E /* Extension.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +355,14 @@
 			files = (
 				C65A608F298408A40013CD5C /* ContentView.swift in Sources */,
 				C65A608D298408A40013CD5C /* PokemonAppApp.swift in Sources */,
+				C6FCD4D929866A9100510D9E /* Analytics.swift in Sources */,
+				C6FCD4D629866A3B00510D9E /* Log.swift in Sources */,
+				C6FCD4E329866FD500510D9E /* SignInScreenView.swift in Sources */,
+				C6FCD4E52986778F00510D9E /* Extension.swift in Sources */,
+				C6FCD4DE29866BF800510D9E /* WelcomeScreenView.swift in Sources */,
+				C6FCD4D4298663C000510D9E /* CoreDataManager.swift in Sources */,
+				C6FCD4E129866F9400510D9E /* PrimaryButton.swift in Sources */,
+				C6FCD4D22986639800510D9E /* console.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +681,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C6FCD4D02986639800510D9E /* console.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C6FCD4D12986639800510D9E /* console.xcdatamodel */,
+			);
+			currentVersion = C6FCD4D12986639800510D9E /* console.xcdatamodel */;
+			path = console.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C65A6081298408A40013CD5C /* Project object */;
 }
