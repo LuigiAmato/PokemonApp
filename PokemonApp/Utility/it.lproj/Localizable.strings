@@ -8,5 +8,13 @@
 
 "save" = "Save";
 "exit" = "Exit";
+
+// Login Page
+"pageLogin" = "Login";
+"user" = "Username";
+"pass" = "Password";
+"buttonA" = "Accedi";
+"buttonR" = "Registrati";
+"buttonS" = "Condividi con gli amici";
 "terms&condition" = "Termini e Condizioni.";
-"read" = "Leggi";
+"read" = "Leggi tutto";
