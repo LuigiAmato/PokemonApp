@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SignInScreenView: View {
+    
+    @ObservedObject var viewModel: SignInViewModel
     @State private var email: String = "" // by default it's empty
     var body: some View {
         ZStack {
@@ -58,7 +60,7 @@ struct SignInScreenView: View {
 
 struct SignInScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInScreenView()
+        SignInScreenView(viewModel: SignInViewModel())
     }
 }
 

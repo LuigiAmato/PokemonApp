@@ -22,6 +22,9 @@
 		C6FCD4E129866F9400510D9E /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4E029866F9400510D9E /* PrimaryButton.swift */; };
 		C6FCD4E329866FD500510D9E /* SignInScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4E229866FD500510D9E /* SignInScreenView.swift */; };
 		C6FCD4E52986778F00510D9E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4E42986778F00510D9E /* Extension.swift */; };
+		C6FCD4EE29867C3200510D9E /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4ED29867C3200510D9E /* SignInViewModel.swift */; };
+		C6FCD4F129867D2300510D9E /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4F029867D2300510D9E /* WebService.swift */; };
+		C6FCD4F329867F0C00510D9E /* ReaderPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4F229867F0C00510D9E /* ReaderPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		C6FCD4E029866F9400510D9E /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		C6FCD4E229866FD500510D9E /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
 		C6FCD4E42986778F00510D9E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		C6FCD4ED29867C3200510D9E /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		C6FCD4F029867D2300510D9E /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		C6FCD4F229867F0C00510D9E /* ReaderPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 		C65A608B298408A40013CD5C /* PokemonApp */ = {
 			isa = PBXGroup;
 			children = (
+				C6FCD4EF29867D1400510D9E /* Network */,
 				C6FCD4DF29866F8600510D9E /* Common */,
 				C6FCD4DA29866BD300510D9E /* Welcome */,
 				C6FCD4CF2986635B00510D9E /* Database */,
@@ -154,6 +161,7 @@
 			children = (
 				C6FCD4D529866A3B00510D9E /* Log.swift */,
 				C6FCD4D829866A9100510D9E /* Analytics.swift */,
+				C6FCD4F229867F0C00510D9E /* ReaderPage.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				C6FCD4E229866FD500510D9E /* SignInScreenView.swift */,
+				C6FCD4ED29867C3200510D9E /* SignInViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -223,6 +232,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		C6FCD4EF29867D1400510D9E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C6FCD4F029867D2300510D9E /* WebService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +256,8 @@
 			dependencies = (
 			);
 			name = PokemonApp;
+			packageProductDependencies = (
+			);
 			productName = PokemonApp;
 			productReference = C65A6089298408A40013CD5C /* PokemonApp.app */;
 			productType = "com.apple.product-type.application";
@@ -311,6 +330,8 @@
 				Base,
 			);
 			mainGroup = C65A6080298408A40013CD5C;
+			packageReferences = (
+			);
 			productRefGroup = C65A608A298408A40013CD5C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -359,10 +380,13 @@
 				C6FCD4D629866A3B00510D9E /* Log.swift in Sources */,
 				C6FCD4E329866FD500510D9E /* SignInScreenView.swift in Sources */,
 				C6FCD4E52986778F00510D9E /* Extension.swift in Sources */,
+				C6FCD4F129867D2300510D9E /* WebService.swift in Sources */,
 				C6FCD4DE29866BF800510D9E /* WelcomeScreenView.swift in Sources */,
 				C6FCD4D4298663C000510D9E /* CoreDataManager.swift in Sources */,
+				C6FCD4EE29867C3200510D9E /* SignInViewModel.swift in Sources */,
 				C6FCD4E129866F9400510D9E /* PrimaryButton.swift in Sources */,
 				C6FCD4D22986639800510D9E /* console.xcdatamodeld in Sources */,
+				C6FCD4F329867F0C00510D9E /* ReaderPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -503,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -528,6 +552,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -535,6 +560,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luigi.PokemonApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -556,6 +584,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,6 +592,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luigi.PokemonApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

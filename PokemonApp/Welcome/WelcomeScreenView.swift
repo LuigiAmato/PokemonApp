@@ -19,7 +19,7 @@ struct WelcomeScreenView: View {
                     PrimaryButton(title: "Get Started")
                     
                     NavigationLink(
-                        destination: SignInScreenView().navigationBarHidden(true),
+                        destination: SignInScreenView(viewModel: SignInViewModel()).navigationBarHidden(true),
                         label: {
                             Text("Sign In")
                                 .font(.title3)
