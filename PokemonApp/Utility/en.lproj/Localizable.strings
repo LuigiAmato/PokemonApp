@@ -27,3 +27,12 @@
 "okAlert" = "Ok";
 "deleteAlert" = "Cancel";
 "msgAlert1" = "Functionality not yet present";
+
+// Menu
+"online" = "Online";
+"offline" = "Offline";
+"Deck" = "Deck";
+"titlePage1" = "Deck Pokèmon";
+"titlePage2" = "Star";
+"titlePage3" = "Settings";
+"search" = "Search";

@@ -27,3 +27,12 @@
 "okAlert" = "Ok";
 "deleteAlert" = "Cancella";
 "msgAlert1" = "Funzionalità non ancora presente";
+
+
+// Menu
+"online" = "Online";
+"offline" = "Offline";
+"titlePage1" = "Pokèmon";
+"titlePage2" = "Preferiti";
+"titlePage3" = "Impostazioni";
+"search" = "Cerca";

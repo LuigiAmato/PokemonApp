@@ -36,6 +36,8 @@ class SignInViewModel: BaseViewModel {
         let ok = NSLocalizedString("okAlert", comment: "")
         switch actionTag {
         case .actionDone:
+            self.isPresentedMenu.toggle()
+            /*
             if email.isEmpty || password.isEmpty {
                 msg = NSLocalizedString("msgAlert", comment: "")
                 self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
@@ -44,6 +46,7 @@ class SignInViewModel: BaseViewModel {
             else {
                 self.isPresentedMenu.toggle()
             }
+             */
             break
         case .actionModal:
             self.isPresentedReader.toggle()

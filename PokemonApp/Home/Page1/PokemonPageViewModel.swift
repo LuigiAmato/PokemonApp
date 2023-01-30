@@ -8,7 +8,10 @@
 import Foundation
 
 
-class PokemonPageViewModel: ObservableObject {
+class PokemonPageViewModel: BaseViewModel {
+    
+    var alertPage: AlertPage?
+  
     @Published var list: [Pokemon] = []
     @Published var searchText = "" {
         didSet { searchResults(searchText: searchText) }
@@ -21,20 +24,22 @@ class PokemonPageViewModel: ObservableObject {
     var callbackIsLoading: (() -> Void)?
 
     
-    func onAppear(){
+    func onAppear(from: any BaseView) {
         self.request()
+    }
+    
+    func tapAction(actionTag: ActionTag) {
+        
     }
     
     private func request(){
         self.callbackIsLoading?()
-        // DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             guard let request = Api.board(offset: self.offset, limit: self.limit).toUrlRequest() else { return }
             self.network.request(request: request) { [weak self] (result:Result<Pokemons, NetworkError>) in
                 guard let self else { return }
                 switch result {
                 case .success(let response):
                     self.callbackIsLoading?()
-                    
                     var index = 1
                     let list = response.results.map(
                         {
@@ -53,7 +58,6 @@ class PokemonPageViewModel: ObservableObject {
                     break
                 }
             }
-        //}
     }
     
     func onItemAppear(item:Pokemon){
@@ -73,8 +77,6 @@ class PokemonPageViewModel: ObservableObject {
             self.list = listFilter
         }
     }
-    
-    
     
     
 }

@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct PokemonPageView: View {
-    @State public var titleTab = ""
-    @State public var titleIcon = ""
+struct PokemonPageView: BaseView {
+    private let titleTab = NSLocalizedString("titlePage1", comment: "")
+    private let titleIcon = "list.number"
     @Binding public var isLoading: Bool
     
     @StateObject fileprivate var viewModel = PokemonPageViewModel()
@@ -19,36 +19,45 @@ struct PokemonPageView: View {
                    VStack {
                        List(viewModel.list) {
                            pokemon in
-                           
                            NavigationLink(destination: DetailPokemonView(pokemon: pokemon)) {
                                PokemonRow(pokemon: pokemon).padding().onAppear(){
                                    viewModel.onItemAppear(item: pokemon)
                                }
-                           }                                             
+                               .swipeActions(edge: .trailing) {
+                                   Button(action: {
+                                       print("leading")
+                                   } ) {
+                                       Label("Star", systemImage: "star")
+                                   }
+                               }
+                           }
                        }
                        .onAppear(){
-                           print("onAppear List")
                            viewModel.callbackIsLoading = {
                                print("callbackIsLoading")
                                isLoading.toggle()
                            }
-                           viewModel.onAppear()
+                           viewModel.onAppear(from: self)
                        }
                    }
                    .toolbar {
                        ToolbarItem(placement: .navigationBarLeading) {
-                           Button("Help") {
+                           Button("Online") {
                                print("Help tapped!")
-                           }
+                           }.foregroundColor(Color.green)
                        }
                    }
-                   .navigationTitle("Navigation")
+                   .navigationTitle("titlePage1")
         }
     
-        .searchable(text: $viewModel.searchText, prompt: "Cerca")
+        .searchable(text: $viewModel.searchText, prompt: "Search")
         .tabItem {
             Label(titleTab, systemImage: titleIcon)
         }
+    }
+    
+    func delete(at offsets: IndexSet) {
+          print("delete")
     }
     
 }

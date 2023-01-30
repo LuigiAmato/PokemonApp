@@ -20,10 +20,6 @@ class WelcomeViewModel: BaseViewModel {
         self.baseView = from
     }
     
-    func checkLogin(){
-        
-    }
-    
     func tapAction(actionTag:ActionTag) {
         let title = NSLocalizedString("errorAlert", comment: "")
         let msg = NSLocalizedString("msgAlert1", comment: "")
