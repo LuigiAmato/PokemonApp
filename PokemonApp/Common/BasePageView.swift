@@ -33,3 +33,25 @@ struct BasePageView_Previews: PreviewProvider {
         BasePageView(isLoading: .constant(false))
     }
 }
+
+protocol BaseView: View {
+}
+
+protocol BaseViewModel: ObservableObject {
+    var alertPage:AlertPage? { get set }
+    func onAppear(from:any BaseView)
+    func tapAction(actionTag:ActionTag)
+}
+
+struct AlertPage {
+    var title:String
+    var msg:String
+    var buttonOk:String
+    var buttonDelete:String?
+    init(title: String, msg: String, buttonOk: String, buttonDelete: String? = nil) {
+        self.title = title
+        self.msg = msg
+        self.buttonOk = buttonOk
+        self.buttonDelete = buttonDelete
+    }
+}

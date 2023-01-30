@@ -7,34 +7,28 @@
 
 import SwiftUI
 
-struct SignInScreenView: View {
+struct SignInScreenView: BaseView {
     
     @ObservedObject var viewModel: SignInViewModel = SignInViewModel()
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var isPresentedReader = false
-    @State private var isPresentedMenu = false
-    @State private var isPresentedAlert = false
 
-        
     var body: some View {
         ZStack {
             Color("BgColor").edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 VStack {
-                    Text("Login")
+                    Text("pageLogin")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.bottom, 30)
-                    TextField(viewModel.titleUsername, text: $email)
+                    TextField("user", text: $viewModel.email)
                         .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.white)
                         .cornerRadius(50.0)
                         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                    SecureField(viewModel.titlePassword, text: $password)
+                    SecureField("pass", text: $viewModel.password)
                         .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -42,35 +36,43 @@ struct SignInScreenView: View {
                         .cornerRadius(50.0)
                         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                         .padding(.vertical)
-                    PrimaryButton(title: "Accedi").padding(.vertical).fullScreenCover(isPresented: $isPresentedMenu, content: {
+                    PrimaryButton(title: NSLocalizedString("buttonA", comment: "")).padding(.vertical).fullScreenCover(isPresented: $viewModel.isPresentedMenu, content: {
                         MenuView()
                     }).onTapGesture {
-                        isPresentedMenu.toggle()
+                        self.viewModel.tapAction(actionTag: .actionDone)
                     }
-                    createButton(image:  Image(systemName: "highlighter"), text: Text("Registrati"))
-                    createButton(image: Image(systemName: "paperplane"), text: Text("Condividi").foregroundColor(Color("PrimaryColor")))
-                        .padding(.vertical)
+                    createButton(image:  Image(systemName: "highlighter"), text: Text("buttonR")).onTapGesture {
+                        self.viewModel.tapAction(actionTag: .actionOther)
+                    }
+                    createButton(image: Image(systemName: "paperplane"), text: Text("buttonS").foregroundColor(Color("PrimaryColor")))
+                        .padding(.vertical).onTapGesture {
+                            self.viewModel.tapAction(actionTag: .actionPlus)
+                        }
                 }
                 Spacer()
                 Divider()
                 Spacer()
-                Text("Leggi tutto")
-                Text("Terms & Conditions.")
+                Text("read")
+                Text("terms&condition")
                     .onTapGesture() {
-                            isPresentedReader.toggle()
+                        self.viewModel.tapAction(actionTag: .actionModal)
                         }
                     .foregroundColor(Color("PrimaryColor"))
-                    .fullScreenCover(isPresented: $isPresentedReader, content: {
-                        ReaderPage(url: "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf",titlePage: "")
+                    .fullScreenCover(isPresented: $viewModel.isPresentedReader, content: {
+                        ReaderPage(url:viewModel.urlTermsCond ,titlePage: NSLocalizedString("terms&condition", comment: ""))
                     })
                 Spacer()
             }
-            .alert(isPresented: $isPresentedAlert) {
-                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
+            .alert(isPresented: $viewModel.isPresentedAlert) {
+                Alert(title: Text(viewModel.alertPage!.title), message: Text(viewModel.alertPage!.msg), dismissButton: .default(Text(viewModel.alertPage!.buttonOk)))
+            }
+            .onAppear(){
+                self.viewModel.onAppear(from: self)
             }
             .padding()
         }
     }
+    
 }
 
 struct SignInScreenView_Previews: PreviewProvider {

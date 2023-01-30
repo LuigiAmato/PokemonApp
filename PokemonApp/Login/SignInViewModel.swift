@@ -10,33 +10,56 @@ import SwiftUI
 
 
 class SignInViewModel: BaseViewModel {
+    var alertPage: AlertPage?
     
-    @Published private var email: String = "" {
+    @Published var email: String = "" {
         didSet {}
     }
-    @Published private var password: String = "" {
+    @Published var password: String = "" {
         didSet {}
     }
-    @Published private var isPresentedReader = false
-    @Published private var isPresentedMenu = false
-    @Published private var isPresentedAlert = false
+    @Published var isPresentedReader = false
+    @Published var isPresentedMenu = false
+    @Published var isPresentedAlert = false
     
-    public var titleUsername: String = "user"
-    public var titlePassword: String = "pass"
-    public var titlePage: String = "pass"
-
+    public var urlTermsCond: String = "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf"
+    
+    private var baseView:(any BaseView)?
+    
     func onAppear(from: any BaseView) {
-        
+        self.baseView = from
     }
-
+    
+    func tapAction(actionTag:ActionTag) {
+        let title = NSLocalizedString("errorAlert", comment: "")
+        var msg = NSLocalizedString("msgAlert1", comment: "")
+        let ok = NSLocalizedString("okAlert", comment: "")
+        switch actionTag {
+        case .actionDone:
+            if email.isEmpty || password.isEmpty {
+                msg = NSLocalizedString("msgAlert", comment: "")
+                self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
+                self.isPresentedAlert.toggle()
+            }
+            else {
+                self.isPresentedMenu.toggle()
+            }
+            break
+        case .actionModal:
+            self.isPresentedReader.toggle()
+            break
+        case .actionPlus: // registrazione
+            self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
+            self.isPresentedAlert.toggle()
+            break
+        case .actionOther: // shared
+            self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
+            self.isPresentedAlert.toggle()
+            break
+        default:
+            break
+        }
+    }
 }
 
 
-protocol BaseViewModel: ObservableObject {
-    func onAppear(from:any BaseView)
-}
-
-protocol BaseView: View {
-    func isLoading()
-    func isAlert()
-}

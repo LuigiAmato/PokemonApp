@@ -6,15 +6,24 @@
   
 */
 
+// Reader Page
 "save" = "Save";
 "exit" = "Exit";
 
 // Login Page
+"tour" = "Tutorial";
 "pageLogin" = "Login";
 "user" = "Username";
 "pass" = "Password";
-"buttonA" = "Accedi";
-"buttonR" = "Registrati";
-"buttonS" = "Condividi con gli amici";
-"terms&condition" = "Termini e Condizioni.";
-"read" = "Leggi tutto";
+"buttonA" = "Sign In";
+"buttonR" = "Registration";
+"buttonS" = "Share";
+"terms&condition" = "Terms & Condition.";
+"read" = "Read our";
+
+// Alert
+"errorAlert" = "Error";
+"msgAlert" = "Enter all fields";
+"okAlert" = "Ok";
+"deleteAlert" = "Cancel";
+"msgAlert1" = "Functionality not yet present";
