@@ -21,21 +21,23 @@ struct SignInScreenView: BaseView {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.bottom, 30)
+                    
                     TextField("user", text: $viewModel.email)
                         .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.white)
+                        .background(Color("placeholder"))
+                        .foregroundColor(Color("textColor"))
                         .cornerRadius(50.0)
                         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                     SecureField("pass", text: $viewModel.password)
                         .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.white)
-                        .cornerRadius(50.0)
+                        .background(Color("placeholder"))                  .cornerRadius(50.0)
                         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                         .padding(.vertical)
+                        .foregroundColor(Color("textColor"))
                     PrimaryButton(title: NSLocalizedString("buttonA", comment: "")).padding(.vertical).fullScreenCover(isPresented: $viewModel.isPresentedMenu, content: {
                         MenuView()
                     }).onTapGesture {
@@ -51,7 +53,7 @@ struct SignInScreenView: BaseView {
                         }
                 }
                 Spacer()
-                Divider()
+                Divider().background(Color("divider"))
                 Spacer()
                 Text("read")
                 Text("terms&condition")
