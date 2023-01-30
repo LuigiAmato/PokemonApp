@@ -39,12 +39,12 @@ struct WelcomeScreenView: BaseView {
             Text("pageLogin")
                 .font(.title3)
                 .fontWeight(.bold)
-                .foregroundColor(Color("PrimaryColor"))
+                .foregroundColor(Color.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.white)
-                .cornerRadius(50.0)
                 .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
+                .background(Color("SecondaryColor"))
+                .cornerRadius(50.0)
                 .padding(.vertical).onTapGesture {
                     self.viewModel.tapAction(actionTag: .actionPlus)
                 }
@@ -58,25 +58,6 @@ struct WelcomeScreenView: BaseView {
         return view;
     }
 }
-/*
- NavigationLink(
-     destination: SignInScreenView(viewModel: SignInViewModel()).navigationBarHidden(true),
-     label: {
-         Text("pageLogin")
-             .font(.title3)
-             .fontWeight(.bold)
-             .foregroundColor(Color("PrimaryColor"))
-             .padding()
-             .frame(maxWidth: .infinity)
-             .background(Color.white)
-             .cornerRadius(50.0)
-             .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
-             .padding(.vertical)
-     })
- .navigationBarHidden(true)
- 
- */
-
 
 struct WelcomeScreenView_Previews: PreviewProvider {
     static var previews: some View {

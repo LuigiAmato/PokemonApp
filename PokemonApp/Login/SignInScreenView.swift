@@ -41,10 +41,11 @@ struct SignInScreenView: BaseView {
                     }).onTapGesture {
                         self.viewModel.tapAction(actionTag: .actionDone)
                     }
-                    createButton(image:  Image(systemName: "highlighter"), text: Text("buttonR")).onTapGesture {
+                    createButton(image:  Image(systemName: "highlighter"), text: Text("buttonR"), backgroundColor: Color("SecondaryColor"))
+                        .onTapGesture {
                         self.viewModel.tapAction(actionTag: .actionOther)
                     }
-                    createButton(image: Image(systemName: "paperplane"), text: Text("buttonS").foregroundColor(Color("PrimaryColor")))
+                    createButton(image: Image(systemName: "paperplane"), text: Text("buttonS"), backgroundColor: Color("PrimaryColor"))
                         .padding(.vertical).onTapGesture {
                             self.viewModel.tapAction(actionTag: .actionPlus)
                         }
@@ -85,19 +86,20 @@ struct SignInScreenView_Previews: PreviewProvider {
 struct createButton: View {
     var image: Image
     var text: Text
+    var backgroundColor: Color
     var body: some View {
         HStack {
             image
                 .padding(.horizontal)
             Spacer()
             text
-                .font(.title2)
+                .font(.title2).foregroundColor(.white)                .fontWeight(.bold)
             Spacer()
             Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background(backgroundColor)
         .cornerRadius(50.0)
         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
     }
