@@ -7,20 +7,21 @@
 
 import SwiftUI
 
-struct MenuView: View {
+struct MenuView: BaseView {
+    @StateObject fileprivate var viewModel = MenuViewmodel()
 
-    @State private var isLoading = false
-    
     var body: some View {
         ZStack {
-            TabView {
-                PokemonPageView(isLoading: $isLoading)
-                PokemonStarPageView()       
-                SettingsPageView(titleTab: "Impostazioni",titleIcon: "lanyardcard.fill")
-            }.onAppear(){
-                print("onAppear MenuView")
-            }
-            BasePageView(isLoading: $isLoading)
+            
+            TabView() {
+                    PokemonPageView(isLoading: $viewModel.isLoading)
+                    PokemonStarPageView().environmentObject(viewModel)
+                    SettingsPageView(titleTab: "Impostazioni",titleIcon: "lanyardcard.fill")
+                }.onAppear(){
+                    viewModel.onAppear(from: self)
+                }
+                BasePageView(isLoading: $viewModel.isLoading)
+            
         }
     }
 }

@@ -9,14 +9,14 @@ import Foundation
 
 enum AnalyticsPage:String {
     case LoginPage
+    case MenuPage
     case PokemonPage
     case PokemonStarPage
-
-    
 }
 
 enum AnalyticsAction:String {
     case LoginAction
+    case TabAction
 }
 
 public class Analytics {

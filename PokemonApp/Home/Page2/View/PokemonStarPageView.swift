@@ -13,6 +13,7 @@ struct PokemonStarPageView: BaseView {
     private let titleIcon = "list.star"
     
     @StateObject fileprivate var viewModel = PokemonStarViewmodel()
+    @EnvironmentObject var viewModelMenu: MenuViewmodel
 
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -46,9 +47,7 @@ struct PokemonStarPageView: BaseView {
                 }
                 else {
                     HStack {
-                        Text("Aggiungi i tuoi Pokemon preferiti")
-                        Image(systemName: "plus").padding().onTapGesture {
-                        }
+                        Text("Aggiungi i tuoi Pokemon preferiti")                     
                     }
                 }
             }
