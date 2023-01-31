@@ -23,10 +23,12 @@
 
 // Alert
 "errorAlert" = "Errore";
+"notice" = "Avviso";
 "msgAlert" = "Inserisci tutti i campi";
 "okAlert" = "Ok";
 "deleteAlert" = "Cancella";
 "msgAlert1" = "Funzionalità non ancora presente";
+"msgAlert2" = "Impossibile effettuare l'operazione";
 
 
 // Menu

@@ -14,12 +14,14 @@ class PokemonItem: Identifiable {
     public var offset: Int64
     public var urlData: Data?
     public var urlImage: String
-    
-    init(id: UUID, name: String, offset: Int64, urlData: Data? = nil, urlImage: String) {
+    public var star: Bool?
+
+    init(id: UUID, name: String, offset: Int64, urlData: Data? = nil, urlImage: String,star:Bool = false) {
         self.id = id
         self.name = name
         self.offset = offset
         self.urlData = urlData
         self.urlImage = urlImage
+        self.star = star
     }
 }

@@ -52,14 +52,14 @@ struct DetailPokemonView: View {
                         .frame(width: size, height: size)
                     }
                 }.frame(width: 300,height: 300)
-               
-                    Text("In dettaglio")
-                        .padding(.horizontal, 50)
-                        .font(.system(size: 20, weight: .heavy, design: .default))
+                
+                Text("In dettaglio")
+                    .padding(.horizontal, 50)
+                    .font(.system(size: 20, weight: .heavy, design: .default))
                 ZStack{
                     Color.black.opacity(0.2)
                     VStack{
-                    ForEach(stats) { stat in
+                        ForEach(stats) { stat in
                             HStack {
                                 // 2
                                 Text("\(stat.name)")
@@ -82,7 +82,7 @@ struct DetailPokemonView: View {
                 ZStack{
                     Color.black.opacity(0.2)
                     VStack{
-                    ForEach(stats) { stat in
+                        ForEach(stats) { stat in
                             HStack {
                                 // 2
                                 Text("\(stat.name)")

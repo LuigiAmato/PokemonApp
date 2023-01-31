@@ -14,14 +14,12 @@ struct PokemonRow: View {
             ImageView
             .frame(width: 50, height: 50) .cornerRadius(25)
             .overlay(RoundedRectangle(cornerRadius: 25)
-                .stroke(Color.blue, lineWidth: 1))
+                .stroke(Color("divider"), lineWidth: 1))
+            Spacer()
             Text(verbatim: pokemon.name.uppercased()).font(Font.headline.weight(.bold))
             Spacer()
-            Button {
-                print("Edit button was tapped")
-            } label: {
-                Image(systemName: "star.fill")
-            }
+            Image(systemName: ((pokemon.star ?? false) ? "star.fill" : "star"))
+            Spacer()
         }
     }
     

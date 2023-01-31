@@ -23,10 +23,12 @@
 
 // Alert
 "errorAlert" = "Error";
+"notice" = "Notice";
 "msgAlert" = "Enter all fields";
 "okAlert" = "Ok";
 "deleteAlert" = "Cancel";
 "msgAlert1" = "Functionality not yet present";
+"msgAlert2" = "Unable to perform the operation";
 
 // Menu
 "online" = "Online";

@@ -4,6 +4,7 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="offset" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="star" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="urlData" optional="YES" attributeType="Binary"/>
         <attribute name="urlImage" attributeType="String"/>
     </entity>

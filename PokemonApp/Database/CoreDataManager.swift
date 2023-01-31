@@ -10,6 +10,8 @@ import CoreData
 
 class CoreDataManager {
     let persistentContainer: NSPersistentContainer
+    var lastDeckPokemon:Array<Pokemon> = []
+    
     init() {
         self.persistentContainer = NSPersistentContainer(name: "console")
         self.persistentContainer.loadPersistentStores { desc, error in
@@ -23,11 +25,11 @@ class CoreDataManager {
     
         let fetchRequest: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
         do {
-            let array = try persistentContainer.viewContext.fetch(fetchRequest)
-            let list = array.map(
+            lastDeckPokemon = try persistentContainer.viewContext.fetch(fetchRequest)
+            let list = lastDeckPokemon.map(
                 {
                     let pokemon:Pokemon = $0
-                    let pokemonItem = PokemonItem(id: pokemon.id ?? UUID(), name: pokemon.name ?? "", offset: pokemon.offset, urlData: pokemon.urlData, urlImage: pokemon.urlImage ?? "")
+                    let pokemonItem = PokemonItem(id: pokemon.id ?? UUID(), name: pokemon.name ?? "", offset: pokemon.offset, urlData: pokemon.urlData, urlImage: pokemon.urlImage ?? "",star: pokemon.star)
                     return pokemonItem
                 }
             )
@@ -41,7 +43,6 @@ class CoreDataManager {
     }
     
     func saveItem(item:PokemonItem){
-     
         let pokemonItem = Pokemon(context:persistentContainer.viewContext)
         pokemonItem.id = item.id
         pokemonItem.name = item.name
@@ -57,7 +58,6 @@ class CoreDataManager {
     }
     
     func deleteItem(name:String){
-        
         let getAllPokemon = self.getDeck()
         let pokemonItem = Pokemon(context:persistentContainer.viewContext)
         pokemonItem.name = name
@@ -72,13 +72,18 @@ class CoreDataManager {
         }
     }
     
-    func updateItem(){
+    func updateItem(item:PokemonItem)->Bool{
+        let pokemonDb = lastDeckPokemon.last {$0.name == item.name}
+        pokemonDb?.star = (item.star ?? false)
+    
         do {
             try persistentContainer.viewContext.save()
+            return true
         }
         catch {
             print("errore core data update item")
             persistentContainer.viewContext.rollback()
+            return false
         }
     }
 }

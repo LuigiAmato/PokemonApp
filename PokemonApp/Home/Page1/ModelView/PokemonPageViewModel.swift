@@ -12,6 +12,7 @@ class PokemonPageViewModel: BaseViewModel {
     
     var alertPage: AlertPage?
     let coreDM: CoreDataManager = CoreDataManager()
+    @Published var isPresentedAlert:Bool = false
     @Published var list: [PokemonItem] = []
     @Published var searchText = "" {
         didSet {
@@ -35,16 +36,32 @@ class PokemonPageViewModel: BaseViewModel {
         
     }
     
+    func onLongPressGesture(pokemon:PokemonItem){
+        let iStar = pokemon.star ?? false
+        var msg = iStar ? "Rimosso dai preferiti" : "Aggiunto nei preferiti"
+        let ok = NSLocalizedString("Ok", comment: "")
+        let title = NSLocalizedString("notice", comment: "")
+        pokemon.star = !iStar
+        let result = coreDM.updateItem(item: pokemon)
+        msg = result ? msg : NSLocalizedString("msgAlert2", comment: "")
+        if result {
+            request()
+        }
+        alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
+        isPresentedAlert.toggle()
+    }
+    
     func getPage()-> String {
-        return "Page \((offset/limit)+1)"
+        return "Count: \(self.listComplete.count)"
+        // "Page \((offset/limit)+1)"
     }
     
     private func request(){
-        
-        let listDB = self.coreDM.getDeck()
+        var listDB = self.coreDM.getDeck()
+        listDB = listDB.filter({$0.offset <= self.offset }) //&& ($0.star ?? false)})
         
         if !listDB.isEmpty {
-            self.listComplete.append(contentsOf: listDB)
+            self.listComplete = listDB
             self.searchResults(searchText: self.searchText)
         }
         else {
@@ -80,7 +97,7 @@ class PokemonPageViewModel: BaseViewModel {
     }
     
     func onItemAppear(item:PokemonItem){
-        if self.list.last?.id == item.id {
+        if self.list.last?.id == item.id && self.list.count >= 50 {
             self.offset = self.offset + self.limit
             self.request()
         }
