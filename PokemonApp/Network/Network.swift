@@ -26,7 +26,7 @@ enum Api {
         }
         
     }
-    case board(offset:Int,limit:Int)
+    case board(offset:Int64,limit:Int64)
 
     func toUrlRequest()->URLRequest? {
         guard let url = URL(string:self.path) else {
@@ -37,11 +37,7 @@ enum Api {
 }
 
 class Network: ObservableObject {
-    @Published var board:Pokemons? = nil
     
-    
-    // @escaping: sopravvive alla vita di questo oggetto: se scompare l oggetto network lei esiste sempre
-
     func request<T: Codable>(request:URLRequest,completion:@escaping (Result<T, NetworkError>) -> Void) {
     
         let urlRequest = request
@@ -65,7 +61,6 @@ class Network: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         let decodedUsers = try JSONDecoder().decode(T.self, from: data)
-                        //self.board = decodedUsers
                         completion(.success(decodedUsers))
                     } catch let error {
                         print("Error decoding: ", error)

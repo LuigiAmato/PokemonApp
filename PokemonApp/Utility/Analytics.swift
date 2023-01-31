@@ -7,22 +7,23 @@
 
 import Foundation
 
-enum AnalyticsPage {
-    case Login
+enum AnalyticsPage:String {
+    case LoginPage
+    case PokemonPage
     
 }
 
-enum AnalyticsAction {
-    case Login
+enum AnalyticsAction:String {
+    case LoginAction
 }
 
-class Analytics {
+public class Analytics {
    
-    static func page(){
-        
+    static func page(type:AnalyticsPage){
+        print("Analytics page :\(type.rawValue)")
     }
     
-    static func action(){
-        
+    static func action(type:AnalyticsAction){
+        print("Analytics action :\(type.rawValue)")
     }
 }

@@ -13,6 +13,7 @@ struct PokemonPageView: BaseView {
     @Binding public var isLoading: Bool
     
     @StateObject fileprivate var viewModel = PokemonPageViewModel()
+    
 
     var body: some View {
         NavigationStack {
@@ -39,12 +40,18 @@ struct PokemonPageView: BaseView {
                            }
                            viewModel.onAppear(from: self)
                        }
+                       Text("Prova")
                    }
                    .toolbar {
                        ToolbarItem(placement: .navigationBarLeading) {
                            Button("Online") {
                                print("Help tapped!")
                            }.foregroundColor(Color.green)
+                       }
+                       ToolbarItem(placement: .navigationBarTrailing) {
+                           Button(viewModel.getPage()) {
+                               print("Help tapped!")
+                           }.foregroundColor(Color.blue)
                        }
                    }
                    .navigationTitle("titlePage1")

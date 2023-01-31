@@ -20,7 +20,7 @@ struct Stat: Identifiable {
 }
 
 struct DetailPokemonView: View {
-    var pokemon: Pokemon
+    var pokemon: PokemonItem
     var size = 180.0
     var sizeBall = 220.0
     
@@ -109,14 +109,13 @@ struct DetailPokemonView: View {
                 }
             }
         }.tint(.blue)
-        .navigationTitle(pokemon.name.uppercased())
+            .navigationTitle(pokemon.name.uppercased())
     }
     
 }
 
 struct DetailPokemonView_Previews: PreviewProvider {
     static var previews: some View {
-        let pokemonTmp = Pokemon(name: "Bulbasaur", url: "", urlImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png", id: 0)
-        DetailPokemonView(pokemon: pokemonTmp)
+        DetailPokemonView(pokemon: MenuRow_Previews.createPokemon())
     }
 }

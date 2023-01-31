@@ -19,8 +19,35 @@ class CoreDataManager {
         }
     }
     
-    func saveItem(){
+    func getDeck()->[PokemonItem]{
+    
+        let fetchRequest: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
+        do {
+            let array = try persistentContainer.viewContext.fetch(fetchRequest)
+            let list = array.map(
+                {
+                    let pokemon:Pokemon = $0
+                    let pokemonItem = PokemonItem(id: pokemon.id ?? UUID(), name: pokemon.name ?? "", offset: pokemon.offset, urlData: pokemon.urlData, urlImage: pokemon.urlImage ?? "")
+                    return pokemonItem
+                }
+            )
+            
+            return list
+        }
+        catch {
+            print("errore core data getDeck")
+            return []
+        }
+    }
+    
+    func saveItem(item:PokemonItem){
      
+        let pokemonItem = Pokemon(context:persistentContainer.viewContext)
+        pokemonItem.id = item.id
+        pokemonItem.name = item.name
+        pokemonItem.offset =  item.offset
+        pokemonItem.urlData = item.urlData
+        pokemonItem.urlImage = item.urlImage
         do {
             try persistentContainer.viewContext.save()
         }
@@ -29,16 +56,29 @@ class CoreDataManager {
         }
     }
     
-    func deleteItem(){
+    func deleteItem(name:String){
+        
+        let getAllPokemon = self.getDeck()
+        let pokemonItem = Pokemon(context:persistentContainer.viewContext)
+        pokemonItem.name = name
+        pokemonItem.id = UUID()
+        persistentContainer.viewContext.delete(pokemonItem)
         do {
-            //persistentContainer.viewContext.de()
+            try persistentContainer.viewContext.save()
         }
         catch {
-            print("errore core data save item")
+            print("errore core data delete item")
+            persistentContainer.viewContext.rollback()
         }
     }
     
     func updateItem(){
-        
+        do {
+            try persistentContainer.viewContext.save()
+        }
+        catch {
+            print("errore core data update item")
+            persistentContainer.viewContext.rollback()
+        }
     }
 }

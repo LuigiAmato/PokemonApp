@@ -8,9 +8,9 @@
 import Foundation
 
 
-class Log {
+public class Log {
     
-    static func log(value:AnyObject){
+    public static func log(value:Any){
         print(value)
     }
 }

@@ -11,20 +11,23 @@ import Foundation
 class PokemonPageViewModel: BaseViewModel {
     
     var alertPage: AlertPage?
-  
-    @Published var list: [Pokemon] = []
+    let coreDM: CoreDataManager = CoreDataManager()
+    @Published var list: [PokemonItem] = []
     @Published var searchText = "" {
-        didSet { searchResults(searchText: searchText) }
+        didSet {
+            print(searchText)
+            searchResults(searchText: searchText) }
     }
-    private var listComplete: [Pokemon] = []
+    private var listComplete: [PokemonItem] = []
     private let network:Network = Network()
-    private let limit = 50;
-    private var offset = 0;
+    private let limit:Int64 = 50;
+    private var offset:Int64 = 0;
     
     var callbackIsLoading: (() -> Void)?
 
     
     func onAppear(from: any BaseView) {
+        Analytics.page(type: .PokemonPage)
         self.request()
     }
     
@@ -32,10 +35,23 @@ class PokemonPageViewModel: BaseViewModel {
         
     }
     
+    func getPage()-> String {
+        return "Page \((offset/limit)+1)"
+    }
+    
     private func request(){
-        self.callbackIsLoading?()
+        
+        let listDB = self.coreDM.getDeck()
+        
+        if !listDB.isEmpty {
+            self.listComplete.append(contentsOf: listDB)
+            self.searchResults(searchText: self.searchText)
+        }
+        else {
+            
+            self.callbackIsLoading?()
             guard let request = Api.board(offset: self.offset, limit: self.limit).toUrlRequest() else { return }
-            self.network.request(request: request) { [weak self] (result:Result<Pokemons, NetworkError>) in
+            self.network.request(request: request) { [weak self] (result:Result<PokemonResponse, NetworkError>) in
                 guard let self else { return }
                 switch result {
                 case .success(let response):
@@ -44,7 +60,8 @@ class PokemonPageViewModel: BaseViewModel {
                     let list = response.results.map(
                         {
                             let urlImage = Api.baseUrlImage + "\(index).png"
-                            let pokemon = Pokemon.init(name: $0.name, url: $0.url, urlImage: urlImage, id: $0.name.hashValue)
+                            let pokemon = PokemonItem.init(id:UUID(),name: $0.name, offset: self.offset,urlImage:urlImage)
+                            self.coreDM.saveItem(item: pokemon)
                             index = index + 1
                             return pokemon
                         }
@@ -54,13 +71,15 @@ class PokemonPageViewModel: BaseViewModel {
                     self.searchResults(searchText: self.searchText)
                     break
                 case .failure(let error):
+                    Log.log(value: error)
                     self.callbackIsLoading?()
                     break
                 }
             }
+        }
     }
     
-    func onItemAppear(item:Pokemon){
+    func onItemAppear(item:PokemonItem){
         if self.list.last?.id == item.id {
             self.offset = self.offset + self.limit
             self.request()
@@ -73,7 +92,7 @@ class PokemonPageViewModel: BaseViewModel {
             
         }
         else {
-            let listFilter = self.list.filter {$0.name.contains(searchText)}
+            let listFilter = self.list.filter {$0.name.uppercased().contains(searchText.uppercased())}
             self.list = listFilter
         }
     }

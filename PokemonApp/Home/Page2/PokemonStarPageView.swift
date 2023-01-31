@@ -23,9 +23,9 @@ struct PokemonStarPageView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(data, id: \.self) { item in
                         
-                        let pokemon = Pokemon(name: "Prova", url: "", urlImage: "", id: 1)
+                        let pokemon = MenuRow_Previews.createPokemon()
                         VStack{
-                            AsyncImage(url: URL(string: pokemon.urlImage), content: {
+                            AsyncImage(url: URL(string: pokemon.urlImage ?? ""), content: {
                                 image in
                                 image.resizable()
                                     .aspectRatio(contentMode: .fill)

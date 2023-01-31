@@ -13,7 +13,6 @@ class WelcomeViewModel: BaseViewModel {
     @Published var isPresentedTour = false
     @Published var isPresentedAlert = false
 
-
     private var baseView:(any BaseView)?
     
     func onAppear(from: any BaseView) {
