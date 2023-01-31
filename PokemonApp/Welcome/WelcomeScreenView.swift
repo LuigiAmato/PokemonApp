@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeScreenView: BaseView {
     
-    @ObservedObject var viewModel: WelcomeModelView = WelcomeModelView()
+    @ObservedObject var viewModel: WelcomeViewmodel = WelcomeViewmodel()
         
     var body: some View {
         NavigationView {
@@ -48,7 +48,7 @@ struct WelcomeScreenView: BaseView {
                 .padding(.vertical).onTapGesture {
                     self.viewModel.tapAction(actionTag: .actionPlus)
                 }
-                .navigationDestination(isPresented: $viewModel.isPresentedLogin,destination:{ SignInScreenView(viewModel: SignInModelView()).navigationBarHidden(true)
+                .navigationDestination(isPresented: $viewModel.isPresentedLogin,destination:{ SignInScreenView(viewModel: SignInViewmodel()).navigationBarHidden(true)
                 })
             Spacer()
             HStack {

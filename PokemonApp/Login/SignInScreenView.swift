@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignInScreenView: BaseView {
     
-    @ObservedObject var viewModel: SignInModelView = SignInModelView()
+    @ObservedObject var viewModel: SignInViewmodel = SignInViewmodel()
 
     var body: some View {
         ZStack {
@@ -80,7 +80,7 @@ struct SignInScreenView: BaseView {
 
 struct SignInScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInScreenView(viewModel: SignInModelView())
+        SignInScreenView(viewModel: SignInViewmodel())
     }
 }
 

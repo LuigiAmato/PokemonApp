@@ -1,5 +1,5 @@
 //
-//  PokemonPageViewModel.swift
+//  PokemonPageViewmodel.swift
 //  PokemonApp
 //
 //  Created by Amato, Luigi on 29/01/23.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-class PokemonPageModelView: BaseModelView {
+class PokemonPageViewmodel: BaseViewmodel {
     
     var alertPage: AlertPage?
     let coreDM: CoreDataManager = CoreDataManager.shared

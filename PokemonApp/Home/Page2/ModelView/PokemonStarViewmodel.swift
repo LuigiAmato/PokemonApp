@@ -1,5 +1,5 @@
 //
-//  PokemonStarModelView.swift
+//  PokemonStarViewmodel.swift
 //  PokemonApp
 //
 //  Created by Amato, Luigi on 31/01/23.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-class PokemonStarModelView: BaseModelView {
+class PokemonStarViewmodel: BaseViewmodel {
     
     var alertPage: AlertPage?
     let coreDM: CoreDataManager = CoreDataManager.shared
@@ -42,7 +42,6 @@ class PokemonStarModelView: BaseModelView {
     private func request(){
         let listDB = self.coreDM.getDeck()
         self.list = listDB.filter({($0.star ?? false)})
-        print(list)
     }
     
 }

@@ -12,7 +12,7 @@ struct PokemonPageView: BaseView {
     private let titleTab = NSLocalizedString("titlePage1", comment: "")
     private let titleIcon = "list.number"
     @Binding public var isLoading: Bool
-    @StateObject fileprivate var viewModel = PokemonPageModelView()
+    @StateObject fileprivate var viewModel = PokemonPageViewmodel()
         
     var body: some View {
         NavigationStack {

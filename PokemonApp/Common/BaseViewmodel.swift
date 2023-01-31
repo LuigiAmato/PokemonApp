@@ -1,5 +1,5 @@
 //
-//  BaseModelView.swift
+//  BaseViewmodel.swift
 //  PokemonApp
 //
 //  Created by Amato, Luigi on 30/01/23.
@@ -8,7 +8,7 @@
 import Foundation
 import Network
 
-protocol BaseModelView: ObservableObject {
+protocol BaseViewmodel: ObservableObject {
     var alertPage:AlertPage? { get set }
     func onAppear(from:any BaseView)
     func tapAction(actionTag:ActionTag)

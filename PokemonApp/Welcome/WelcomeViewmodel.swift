@@ -1,5 +1,5 @@
 //
-//  WelcomeViewModel.swift
+//  WelcomeViewmodel.swift
 //  PokemonApp
 //
 //  Created by Amato, Luigi on 30/01/23.
@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-class WelcomeModelView: BaseModelView {
+class WelcomeViewmodel: BaseViewmodel {
     var alertPage: AlertPage?
     @Published var isPresentedLogin = false
     @Published var isPresentedTour = false
