@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-class WelcomeViewModel: BaseViewModel {
+class WelcomeModelView: BaseModelView {
     var alertPage: AlertPage?
     @Published var isPresentedLogin = false
     @Published var isPresentedTour = false

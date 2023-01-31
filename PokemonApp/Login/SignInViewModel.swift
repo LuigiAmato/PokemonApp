@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-class SignInViewModel: BaseViewModel {
+class SignInModelView: BaseModelView {
     var alertPage: AlertPage?
     
     @Published var email: String = "" {

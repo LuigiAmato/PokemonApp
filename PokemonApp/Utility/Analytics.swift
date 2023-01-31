@@ -10,6 +10,8 @@ import Foundation
 enum AnalyticsPage:String {
     case LoginPage
     case PokemonPage
+    case PokemonStarPage
+
     
 }
 
@@ -20,10 +22,10 @@ enum AnalyticsAction:String {
 public class Analytics {
    
     static func page(type:AnalyticsPage){
-        print("Analytics page :\(type.rawValue)")
+        print("Analytics page: \(type.rawValue)")
     }
     
     static func action(type:AnalyticsAction){
-        print("Analytics action :\(type.rawValue)")
+        print("Analytics action: \(type.rawValue)")
     }
 }

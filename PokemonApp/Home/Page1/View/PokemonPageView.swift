@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct PokemonPageView: BaseView {
+    
     private let titleTab = NSLocalizedString("titlePage1", comment: "")
     private let titleIcon = "list.number"
     @Binding public var isLoading: Bool
-    
-    @StateObject fileprivate var viewModel = PokemonPageViewModel()
-    
-    
+    @StateObject fileprivate var viewModel = PokemonPageModelView()
+        
     var body: some View {
         NavigationStack {
             VStack {
@@ -47,7 +46,6 @@ struct PokemonPageView: BaseView {
                     }
                     viewModel.onAppear(from: self)
                 }
-                Text("Prova")
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

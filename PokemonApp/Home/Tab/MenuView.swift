@@ -15,7 +15,7 @@ struct MenuView: View {
         ZStack {
             TabView {
                 PokemonPageView(isLoading: $isLoading)
-                PokemonStarPageView(titleTab: "Preferiti",titleIcon: "list.star")       
+                PokemonStarPageView()       
                 SettingsPageView(titleTab: "Impostazioni",titleIcon: "lanyardcard.fill")
             }.onAppear(){
                 print("onAppear MenuView")

@@ -8,7 +8,7 @@
 import Foundation
 import Network
 
-protocol BaseViewModel: ObservableObject {
+protocol BaseModelView: ObservableObject {
     var alertPage:AlertPage? { get set }
     func onAppear(from:any BaseView)
     func tapAction(actionTag:ActionTag)

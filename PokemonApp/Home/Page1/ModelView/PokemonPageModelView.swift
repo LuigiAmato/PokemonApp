@@ -8,10 +8,10 @@
 import Foundation
 
 
-class PokemonPageViewModel: BaseViewModel {
+class PokemonPageModelView: BaseModelView {
     
     var alertPage: AlertPage?
-    let coreDM: CoreDataManager = CoreDataManager()
+    let coreDM: CoreDataManager = CoreDataManager.shared
     @Published var isPresentedAlert:Bool = false
     @Published var list: [PokemonItem] = []
     @Published var searchText = "" {
@@ -25,7 +25,6 @@ class PokemonPageViewModel: BaseViewModel {
     private var offset:Int64 = 0;
     
     var callbackIsLoading: (() -> Void)?
-
     
     func onAppear(from: any BaseView) {
         Analytics.page(type: .PokemonPage)
