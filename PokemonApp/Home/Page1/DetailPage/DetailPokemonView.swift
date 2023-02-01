@@ -19,22 +19,134 @@ struct Stat: Identifiable {
     }
 }
 
-struct DetailPokemonView: View {
+struct DetailPokemonView: BaseView {
     var pokemon: PokemonItem
-    var size = 180.0
+    var size = 50.0
     var sizeBall = 220.0
+    @StateObject fileprivate var viewModel = DetailPokemonViewmodel()
     
-    let stats: [Stat] = [
-        Stat(name: "HP", base_Stat: 45),
-        Stat(name: "Attack", base_Stat: 49),
-        Stat(name: "Defence", base_Stat: 49),
-        Stat(name: "special attack", base_Stat: 65),
-        Stat(name: "special defense", base_Stat: 65),
-        Stat(name: "special ", base_Stat: 90),
-        Stat(name: "special ", base_Stat: 92)
-    ]
+    
+    init(pokemon: PokemonItem, size: Double = 180.0, sizeBall: Double = 220.0) {
+        self.pokemon = pokemon
+        self.size = size
+        self.sizeBall = sizeBall
+    }
+    
+    var stats:[Stat] = [Stat(name: "hp", base_Stat: 20),Stat(name: "hp", base_Stat: 20),Stat(name: "hp", base_Stat: 20),Stat(name: "hp", base_Stat: 20),Stat(name: "hp", base_Stat: 20)]
     
     var body: some View {
+        ScrollView {
+            ZStack{
+                Color.yellow.edgesIgnoringSafeArea(.all).opacity(0.9)
+                ZStack{
+                    Color.red.edgesIgnoringSafeArea(.all).opacity(0.9)
+                    VStack {
+                        HStack {
+                            Spacer()
+                            ZStack{
+                                Color.gray
+                                Text("Exp  \(self.viewModel.base_experience ?? 0)")
+                                    .frame(width: 50, alignment: .trailing)              .font(.system(size: 12, weight: .bold, design: .serif)).padding(.trailing,5)
+                            }.frame(width:50,height: 20)
+                                .cornerRadius(5)
+                                .padding(.trailing)
+                                .padding(.top,3)
+                        }
+                        Spacer()
+                    }
+                    VStack {
+                        ZStack{
+                            Color.gray.edgesIgnoringSafeArea(.all).opacity(0.9)
+                            Image("screen").resizable(resizingMode: Image.ResizingMode.stretch)
+                            VStack {
+                                Spacer()
+                                AsyncImage(url: URL(string: pokemon.urlImage), content: {
+                                    image in
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                }, placeholder: {
+                                    Image(systemName: "person.fill")
+                                })
+                                .shadow(color: .white, radius: 10, x: 10, y: 10)
+                                .frame(width: 100, height: 100)
+                            }
+                        }.frame(width: UIScreen.screenWidth*0.7,height: UIScreen.screenHeight*0.25)
+                            .border(.gray, width: 3)
+                            .cornerRadius(5)
+                            .padding(.top,25)
+                        HStack {
+                            Text(("Abilità: ").uppercased())
+                                .padding(.leading,5)
+                                .padding(.trailing,5)
+                                .font(.system(size: 12, weight: .bold, design: .default)).padding(.leading,15)
+                            Spacer()
+                        }
+                        .padding(.top,15)
+                        .padding(.bottom,5)
+                        HStack {
+                            ForEach(self.viewModel.ability) { ability in
+                                Text((ability.name).uppercased())
+                                    .padding([.leading,.trailing],5)
+                                    .padding([.top,.bottom],2)
+                                .font(.system(size: 8, weight: .bold, design: .default))
+                                .background(.white)
+                                .border(.black)
+                                .cornerRadius(2)
+                            }
+                        }
+                        Spacer(minLength: 15)
+                        HStack {
+                            Text(("Dettagli: ").uppercased())
+                                .padding(.leading,5)
+                                .padding(.trailing,5)
+                                .font(.system(size: 12, weight: .bold, design: .default)).padding(.leading,15)
+                            Spacer()
+                        }
+                        ZStack{
+                            VStack{
+                                ForEach(self.viewModel.stats) { stat in
+                                    HStack {
+                                        Text("\(stat.name)".uppercased())
+                                            .frame(width: 100, alignment: .trailing)              .font(.system(size: 8, weight: .bold, design: .default))
+                                        Rectangle()
+                                            .fill(Color.blue)
+                                            .frame(width: CGFloat(stat.base_Stat), height: 5)
+                                        Spacer()
+                                        Text("\(stat.base_Stat)").padding(.trailing)
+                                        Spacer()
+                                    }
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+                                                            
+                }.frame(width: UIScreen.screenWidth*0.8,height: UIScreen.screenHeight*0.75).cornerRadius(5)
+                
+                
+                
+            }.frame(width: UIScreen.screenWidth*0.9,height: UIScreen.screenHeight*0.8).cornerRadius(10)
+                .rotationEffect(.degrees(+1))
+        }
+        .scrollIndicators(.hidden)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Image(systemName: "star.fill").onTapGesture {
+                    print("prova")
+                }
+            }
+        }
+        .tint(.blue)
+        .navigationTitle(pokemon.name.uppercased())
+        .onAppear(){
+            Analytics.page(type: .PokemonDetailPage)
+            self.viewModel.setPokemon(pokemon: self.pokemon)
+            self.viewModel.onAppear(from: self)
+        }
+    }
+    
+       
+    var body2: some View {
         ScrollView {
             VStack() {
                 ZStack {
@@ -57,7 +169,7 @@ struct DetailPokemonView: View {
                 ZStack{
                     Color.black.opacity(0.2)
                     VStack{
-                        ForEach(stats) { stat in
+                        ForEach(viewModel.stats) { stat in
                             HStack {
                                 // 2
                                 Text("\(stat.name)")
@@ -79,22 +191,7 @@ struct DetailPokemonView: View {
                     .font(.system(size: 20, weight: .heavy, design: .default))
                 ZStack{
                     Color.black.opacity(0.2)
-                    VStack{
-                        ForEach(stats) { stat in
-                            HStack {
-                                // 2
-                                Text("\(stat.name)")
-                                    .frame(width: 100, alignment: .trailing)
-                                // 3
-                                Rectangle()
-                                    .fill(Color.blue)
-                                    .frame(width: CGFloat(stat.base_Stat), height: 20)
-                                // 4
-                                Spacer()
-                                Text("\(stat.base_Stat)").padding(.trailing)
-                            }
-                        }
-                    }
+                  
                 }.frame(width: UIScreen.main.bounds.size.width*0.9,height: 300).cornerRadius(10)
                 
             }
@@ -106,8 +203,14 @@ struct DetailPokemonView: View {
                     print("prova")
                 }
             }
-        }.tint(.blue)
-            .navigationTitle(pokemon.name.uppercased())
+        }
+        .tint(.blue)
+        .navigationTitle(pokemon.name.uppercased())
+        .onAppear(){
+            Analytics.page(type: .PokemonDetailPage)
+            self.viewModel.setPokemon(pokemon: self.pokemon)
+            self.viewModel.onAppear(from: self)
+        }
     }
     
     var body1: some View {
@@ -131,9 +234,9 @@ struct DetailPokemonView: View {
                     .padding(.horizontal, 50)
                     .font(.system(size: 20, weight: .heavy, design: .default))
                 ZStack{
-                    Color.black.opacity(0.2)
+                    Color.white
                     VStack{
-                        ForEach(stats) { stat in
+                        ForEach(self.viewModel.stats) { stat in
                             HStack {
                                 // 2
                                 Text("\(stat.name)")
@@ -147,6 +250,7 @@ struct DetailPokemonView: View {
                                 Text("\(stat.base_Stat)").padding(.trailing)
                             }
                         }
+                        Spacer()
                     }
                 }.frame(width: UIScreen.main.bounds.size.width*0.9,height: 300).cornerRadius(10)
                 
@@ -156,7 +260,7 @@ struct DetailPokemonView: View {
                 ZStack{
                     Color.black.opacity(0.2)
                     VStack{
-                        ForEach(stats) { stat in
+                        ForEach(self.viewModel.stats) { stat in
                             HStack {
                                 // 2
                                 Text("\(stat.name)")

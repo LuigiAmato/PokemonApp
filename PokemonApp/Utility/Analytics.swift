@@ -12,6 +12,8 @@ enum AnalyticsPage:String {
     case MenuPage
     case PokemonPage
     case PokemonStarPage
+    case PokemonDetailPage
+
 }
 
 enum AnalyticsAction:String {

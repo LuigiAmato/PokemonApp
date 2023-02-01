@@ -23,10 +23,12 @@ enum Api {
         switch self {
         case let .board(offset,limit) :
             return Api.baseUrl + "pokemon?offset=\(offset)&limit=\(limit)"
+        case let .detail(name) :
+            return Api.baseUrl + "pokemon/"+name
         }
-        
     }
     case board(offset:Int64,limit:Int64)
+    case detail(name:String)
 
     func toUrlRequest()->URLRequest? {
         guard let url = URL(string:self.path) else {
