@@ -46,11 +46,12 @@ struct DetailPokemonView: BaseView {
                             ZStack{
                                 Color.gray
                                 Text("Exp  \(self.viewModel.base_experience ?? 0)")
-                                    .frame(width: 50, alignment: .trailing)              .font(.system(size: 12, weight: .bold, design: .serif)).padding(.trailing,5)
-                            }.frame(width:50,height: 20)
+                                    .frame(width: 80, alignment: .center)              .font(.system(size: 12, weight: .bold, design: .serif)).padding(.trailing,5)
+                            }.frame(width:80,height: 20)
                                 .cornerRadius(5)
-                                .padding(.trailing)
+                                .padding(.leading)
                                 .padding(.top,3)
+                            Spacer()
                         }
                         Spacer()
                     }
@@ -120,22 +121,17 @@ struct DetailPokemonView: BaseView {
                             }
                         }
                     }
-                                                            
+                    VStack{
+                        Image(systemName: (pokemon.star?? false) ? "star.fill" : "star").resizable().frame(width: 50,height: 50).scaledToFill()
+                            .padding(.leading,UIScreen.screenWidth/2+50)
+                            .padding(.top,160).foregroundColor(.yellow)
+                        Spacer()
+                    }
                 }.frame(width: UIScreen.screenWidth*0.8,height: UIScreen.screenHeight*0.75).cornerRadius(5)
-                
-                
-                
             }.frame(width: UIScreen.screenWidth*0.9,height: UIScreen.screenHeight*0.8).cornerRadius(10)
                 .rotationEffect(.degrees(+1))
         }
         .scrollIndicators(.hidden)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Image(systemName: "star.fill").onTapGesture {
-                    print("prova")
-                }
-            }
-        }
         .tint(.blue)
         .navigationTitle(pokemon.name.uppercased())
         .onAppear(){
