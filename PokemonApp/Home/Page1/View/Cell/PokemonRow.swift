@@ -12,9 +12,8 @@ struct PokemonRow: View {
     var body: some View {
         HStack {
             ImageView
-            .frame(width: 50, height: 50) .cornerRadius(25)
-            .overlay(RoundedRectangle(cornerRadius: 25)
-                .stroke(Color("divider"), lineWidth: 1))
+            .frame(width: 50, height: 50)
+            .shadow(color: Color("divider"), radius: 15, x: 5, y: 10)
             Spacer()
             Text(verbatim: pokemon.name.uppercased()).font(Font.headline.weight(.bold))
             Spacer()
@@ -25,7 +24,7 @@ struct PokemonRow: View {
     
     var ImageView: some View {
         guard let url = URL(string: pokemon.urlImage) else {
-            return AnyView(Image(systemName: "person.fill"))
+            return AnyView(PokemonBallView(size: 70))
         }
         
         return AnyView(AsyncImage(url: url, content: {
@@ -33,7 +32,7 @@ struct PokemonRow: View {
             image.resizable()
                 .aspectRatio(contentMode: .fill)
         }, placeholder: {
-            Image(systemName: "person.fill")
+            PokemonBallView(size: 50)
         }))
     }
     

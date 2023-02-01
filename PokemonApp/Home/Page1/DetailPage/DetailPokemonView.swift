@@ -8,24 +8,12 @@
 import SwiftUI
 import Charts
 
-struct Stat: Identifiable {
-    let id = UUID()
-    let name: String
-    let base_Stat: Int
-    
-    init(name: String, base_Stat: Int) {
-        self.name = name
-        self.base_Stat = base_Stat
-    }
-}
-
 struct DetailPokemonView: BaseView {
     var pokemon: PokemonItem
     var size = 50.0
     var sizeBall = 220.0
     @StateObject fileprivate var viewModel = DetailPokemonViewmodel()
-    
-    
+
     init(pokemon: PokemonItem, size: Double = 180.0, sizeBall: Double = 220.0) {
         self.pokemon = pokemon
         self.size = size
@@ -66,7 +54,7 @@ struct DetailPokemonView: BaseView {
                                     image.resizable()
                                         .aspectRatio(contentMode: .fill)
                                 }, placeholder: {
-                                    Image(systemName: "person.fill")
+                                    PokemonBallView(size: 70)
                                 })
                                 .shadow(color: .white, radius: 10, x: 10, y: 10)
                                 .frame(width: 100, height: 100)
@@ -89,10 +77,14 @@ struct DetailPokemonView: BaseView {
                                 Text((ability.name).uppercased())
                                     .padding([.leading,.trailing],5)
                                     .padding([.top,.bottom],2)
+                                    .foregroundColor(Color.black)
                                 .font(.system(size: 8, weight: .bold, design: .default))
                                 .background(.white)
                                 .border(.black)
                                 .cornerRadius(2)
+                                .onTapGesture(count: 2) {
+                                    self.viewModel.onAppearSheet(abilityName: ability.name)
+                                }
                             }
                         }
                         Spacer(minLength: 15)
@@ -141,6 +133,14 @@ struct DetailPokemonView: BaseView {
             self.viewModel.setPokemon(pokemon: self.pokemon)
             self.viewModel.onAppear(from: self)
         }
+        .sheet(isPresented: $viewModel.presentSheet) {
+            
+            VStack {
+                Text(viewModel.abilityDetail?.short_effect ?? "Not Found")
+                Text(viewModel.abilityDetail?.effect ?? "Not Found")
+            }
+            .presentationDetents([.medium, .large])
+        }
     }
     
        
@@ -155,7 +155,7 @@ struct DetailPokemonView: BaseView {
                             image.resizable()
                                 .aspectRatio(contentMode: .fill)
                         }, placeholder: {
-                            Image(systemName: "person.fill")
+                            PokemonBallView(size: 70)
                         })
                         .frame(width: size, height: size)
                     }
@@ -222,7 +222,7 @@ struct DetailPokemonView: BaseView {
                             image.resizable()
                                 .aspectRatio(contentMode: .fill)
                         }, placeholder: {
-                            Image(systemName: "person.fill")
+                            PokemonBallView(size: 70)
                         })
                         .frame(width: size, height: size)
                     }

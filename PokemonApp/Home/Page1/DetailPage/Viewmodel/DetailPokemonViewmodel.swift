@@ -18,10 +18,18 @@ class DetailPokemonViewmodel: BaseViewmodel {
     @Published var stats:Array<Stat> = Array<Stat>()
     @Published var ability:Array<Stat> = Array<Stat>()
     @Published var base_experience: Int? = 0
+    private var abilities:[AbilitiesResponse] = []
+    @Published var presentSheet = false
+    public var abilityDetail:EffectEntries? = nil
 
     func onAppear(from: any BaseView) {
         Analytics.page(type: .PokemonPage)                
         self.request()
+    }
+    
+    func onAppearSheet(abilityName:String) {
+        Analytics.page(type: .PokemonDetailPageSheet)
+        self.requestAbility(ability: abilityName)
     }
     
     func setPokemon(pokemon: PokemonItem){
@@ -62,6 +70,7 @@ class DetailPokemonViewmodel: BaseViewmodel {
                     let name = $0.stat.name
                     self.stats.append(Stat(name: name.uppercased(), base_Stat: value))
                 }
+                self.abilities = response.abilities
                 _ = response.abilities.map{
                     let ability = $0.ability
                     self.ability.append(Stat(name: ability.name.uppercased(), base_Stat: 0))
@@ -75,5 +84,23 @@ class DetailPokemonViewmodel: BaseViewmodel {
         }
     }
     
+    private func requestAbility(ability:String){
+        
+        self.callbackIsLoading?()
+        guard let request = Api.detailAbility(name: ability).toUrlRequest() else { return }
+        self.network.request(request: request) { [weak self] (result:Result<AbilityDetailResponse, NetworkError>) in
+            guard let self else { return }
+            switch result {
+            case .success(let response):
+                self.callbackIsLoading?()
+                self.abilityDetail = response.effect_entries.filter {$0.language.name.lowercased() == "en"}.last
+                break
+            case .failure(let error):
+                Log.log(value: error)
+                self.callbackIsLoading?()
+                break
+            }
+        }
+    }
     
 }

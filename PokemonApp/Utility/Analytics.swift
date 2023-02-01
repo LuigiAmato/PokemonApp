@@ -13,7 +13,7 @@ enum AnalyticsPage:String {
     case PokemonPage
     case PokemonStarPage
     case PokemonDetailPage
-
+    case PokemonDetailPageSheet
 }
 
 enum AnalyticsAction:String {
