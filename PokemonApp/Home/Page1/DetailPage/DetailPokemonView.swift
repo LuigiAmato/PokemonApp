@@ -122,9 +122,11 @@ struct DetailPokemonView: BaseView {
                         }
                     }
                     VStack{
-                        Image(systemName: (pokemon.star?? false) ? "star.fill" : "star").resizable().frame(width: 50,height: 50).scaledToFill()
-                            .padding(.leading,UIScreen.screenWidth/2+50)
-                            .padding(.top,160).foregroundColor(.yellow)
+                        if (pokemon.star ?? false){
+                            Image(systemName: (pokemon.star ?? false) ? "star.fill" : "star").resizable().frame(width: 50,height: 50).scaledToFill()
+                                .padding(.leading,UIScreen.screenWidth/2+50)
+                                .padding(.top,160).foregroundColor(.yellow)
+                        }
                         Spacer()
                     }
                 }.frame(width: UIScreen.screenWidth*0.8,height: UIScreen.screenHeight*0.75).cornerRadius(5)
