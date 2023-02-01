@@ -34,9 +34,83 @@ struct DetailPokemonView: View {
         Stat(name: "special ", base_Stat: 92)
     ]
     
-    // https://www.kodeco.com/6398124-swiftui-tutorial-for-ios-creating-charts
-    
     var body: some View {
+        ScrollView {
+            VStack() {
+                ZStack {
+                    PokemonBallView(size: sizeBall)
+                    VStack {
+                        AsyncImage(url: URL(string: pokemon.urlImage), content: {
+                            image in
+                            image.resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }, placeholder: {
+                            Image(systemName: "person.fill")
+                        })
+                        .frame(width: size, height: size)
+                    }
+                }.frame(width: 300,height: 300)
+                
+                Text("In dettaglio")
+                    .padding(.horizontal, 50)
+                    .font(.system(size: 20, weight: .heavy, design: .default))
+                ZStack{
+                    Color.black.opacity(0.2)
+                    VStack{
+                        ForEach(stats) { stat in
+                            HStack {
+                                // 2
+                                Text("\(stat.name)")
+                                    .frame(width: 100, alignment: .trailing)
+                                // 3
+                                Rectangle()
+                                    .fill(Color.blue)
+                                    .frame(width: CGFloat(stat.base_Stat), height: 20)
+                                // 4
+                                Spacer()
+                                Text("\(stat.base_Stat)").padding(.trailing)
+                            }
+                        }
+                    }
+                }.frame(width: UIScreen.main.bounds.size.width*0.9,height: 300).cornerRadius(10)
+                
+                Text("Abilità")
+                    .padding(.horizontal, 50)
+                    .font(.system(size: 20, weight: .heavy, design: .default))
+                ZStack{
+                    Color.black.opacity(0.2)
+                    VStack{
+                        ForEach(stats) { stat in
+                            HStack {
+                                // 2
+                                Text("\(stat.name)")
+                                    .frame(width: 100, alignment: .trailing)
+                                // 3
+                                Rectangle()
+                                    .fill(Color.blue)
+                                    .frame(width: CGFloat(stat.base_Stat), height: 20)
+                                // 4
+                                Spacer()
+                                Text("\(stat.base_Stat)").padding(.trailing)
+                            }
+                        }
+                    }
+                }.frame(width: UIScreen.main.bounds.size.width*0.9,height: 300).cornerRadius(10)
+                
+            }
+        }
+        .scrollIndicators(.hidden)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Image(systemName: "star.fill").onTapGesture {
+                    print("prova")
+                }
+            }
+        }.tint(.blue)
+            .navigationTitle(pokemon.name.uppercased())
+    }
+    
+    var body1: some View {
         ScrollView {
             VStack() {
                 ZStack {
