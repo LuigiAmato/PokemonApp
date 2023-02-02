@@ -55,10 +55,16 @@ class Network: ObservableObject {
     
     func doLogin(email:String,password:String) async -> (Bool,String) {
         do {
-            print(email)
-            print(password)
+            if Configuration.isMock {
+                return (true,"")
+            }
             let result:AuthDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-            return (true,"")
+            if result.user.email != nil {
+                SessionManager.Shared.user = result.user.email ?? ""
+                SessionManager.Shared.idUser = result.user.uid
+                return (true,"")
+            }
+            return (false,"")
         }
         catch {
             print("Unexpected error: \(error).")

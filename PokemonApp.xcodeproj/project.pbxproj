@@ -45,6 +45,7 @@
 		C68F6280298C041800FD57C4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C68F627F298C041800FD57C4 /* FirebaseAuth */; };
 		C68F6282298C041800FD57C4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C68F6281298C041800FD57C4 /* FirebaseCrashlytics */; };
 		C68F6284298C048F00FD57C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C68F6283298C048F00FD57C4 /* GoogleService-Info.plist */; };
+		C68F6287298C14FB00FD57C4 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F6286298C14FB00FD57C4 /* SessionManager.swift */; };
 		C6FCD4D22986639800510D9E /* console.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D02986639800510D9E /* console.xcdatamodeld */; };
 		C6FCD4D4298663C000510D9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D3298663C000510D9E /* CoreDataManager.swift */; };
 		C6FCD4D629866A3B00510D9E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D529866A3B00510D9E /* Log.swift */; };
@@ -115,6 +116,7 @@
 		C68F6276298BF60300FD57C4 /* detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detail.json; sourceTree = "<group>"; };
 		C68F6278298BF65600FD57C4 /* detailAbility.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detailAbility.json; sourceTree = "<group>"; };
 		C68F6283298C048F00FD57C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C68F6286298C14FB00FD57C4 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		C6FCD4D12986639800510D9E /* console.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = console.xcdatamodel; sourceTree = "<group>"; };
 		C6FCD4D3298663C000510D9E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C6FCD4D529866A3B00510D9E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				C68F6273298BF22000FD57C4 /* mock */,
 				C6FCD4F029867D2300510D9E /* Network.swift */,
 				C68F6271298BD09C00FD57C4 /* Configuration.swift */,
+				C68F6286298C14FB00FD57C4 /* SessionManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 			files = (
 				C65A608F298408A40013CD5C /* ContentView.swift in Sources */,
 				C65794E2298AB5B400F1D76C /* Stat.swift in Sources */,
+				C68F6287298C14FB00FD57C4 /* SessionManager.swift in Sources */,
 				C63000962987C02A00E80620 /* WelcomeViewmodel.swift in Sources */,
 				C630007E2986EE3B00E80620 /* PokemonPageView.swift in Sources */,
 				C65A608D298408A40013CD5C /* PokemonAppApp.swift in Sources */,

@@ -57,6 +57,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "TERMS_AND_CONDITIONS"
+            value = "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "HOST_IMG"
             value = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
             isEnabled = "YES">

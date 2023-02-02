@@ -23,12 +23,13 @@ class SignInViewmodel: BaseViewmodel {
     @Published var isPresentedMenu = false
     @Published var isPresentedAlert = false
     
-    public var urlTermsCond: String = "https://toolboxcoworking.com/assets/Termini-e-Condizioni.pdf"
+    public var urlTermsCond: String = Configuration.termsAndConditions
     
     private var baseView:(any BaseView)?
     
     func onAppear(from: any BaseView) {
         self.baseView = from
+        
     }
     
     func tapAction(actionTag:ActionTag) {

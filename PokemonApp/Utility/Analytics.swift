@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 enum AnalyticsPage:String {
     case LoginPage
@@ -26,9 +27,15 @@ public class Analytics {
    
     static func page(type:AnalyticsPage){
         print("Analytics page: \(type.rawValue)")
+        Firebase.Analytics.logEvent(AnalyticsEventScreenView,
+                                parameters: [AnalyticsParameterScreenName: "\(type.rawValue)",
+                                             AnalyticsParameterScreenClass: "\(type.rawValue)"])
+       
     }
     
     static func action(type:AnalyticsAction){
         print("Analytics action: \(type.rawValue)")
+        Firebase.Analytics.logEvent(type.rawValue,
+                                parameters: ["Action": "\(type.rawValue)"])
     }
 }

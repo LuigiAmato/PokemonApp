@@ -24,7 +24,7 @@ class Configuration {
             if let host = ProcessInfo.processInfo.environment["HOST"] {
                 return host
             }
-            return "https://pokeapi.co/api/v2/"
+            return ""
         }
     }
         
@@ -33,8 +33,19 @@ class Configuration {
             if let host = ProcessInfo.processInfo.environment["HOST_IMG"] {
                 return host
             }
-            return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+            return ""
         }
     }
+    
+    static var termsAndConditions:String {
+        get {
+            if let host = ProcessInfo.processInfo.environment["TERMS_AND_CONDITIONS"] {
+                return host
+            }
+            return ""
+        }
+    }
+    
+    
     
 }
