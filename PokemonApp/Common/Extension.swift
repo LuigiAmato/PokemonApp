@@ -24,4 +24,5 @@ public enum ActionTag {
     case actionPlus
     case actionExitPage
     case actionPassword
+    case actionCreateUser
 }

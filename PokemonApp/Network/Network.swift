@@ -71,6 +71,25 @@ class Network: ObservableObject {
             return (false,error.localizedDescription)
         }
     }
+    
+    func createUser(email:String,password:String) async -> (Bool,String) {
+        do {
+            if Configuration.isMock {
+                return (true,"")
+            }
+            let result:AuthDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
+            if result.user.email != nil {
+                SessionManager.Shared.user = result.user.email ?? ""
+                SessionManager.Shared.idUser = result.user.uid
+                return (true,"")
+            }
+            return (false,"")
+        }
+        catch {
+            print("Unexpected error: \(error).")
+            return (false,error.localizedDescription)
+        }
+    }
         
     func request<T: Codable>(request:URLRequest,completion:@escaping (Result<T, NetworkError>) -> Void) {
     

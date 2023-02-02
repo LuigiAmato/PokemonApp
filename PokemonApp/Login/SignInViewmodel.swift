@@ -23,7 +23,10 @@ class SignInViewmodel: BaseViewmodel {
     @Published var isPresentedMenu = false
     @Published var isPresentedAlert = false
     @Published var showPassword: Bool = false
-
+    @Published var presentSheet:Bool = false    
+    @Published var createUser: String = ""
+    @Published var createPassword: String = ""
+    
     public var urlTermsCond: String = Configuration.termsAndConditions
     
     private var baseView:(any BaseView)?
@@ -72,8 +75,27 @@ class SignInViewmodel: BaseViewmodel {
             self.isPresentedAlert.toggle()
             break
         case .actionOther: // shared
-            self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
-            self.isPresentedAlert.toggle()
+            self.presentSheet.toggle()
+            //self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
+           // self.isPresentedAlert.toggle()
+            break
+            
+        case .actionCreateUser:
+            // https://developer.apple.com/forums/thread/712263
+            Task.init() {
+                let result = await self.network.createUser(email: self.createUser, password: self.createPassword)
+                if result.0 {
+                    DispatchQueue.main.async {
+                        //self.isPresentedMenu.toggle()
+                    }
+                }
+                else {
+                    self.alertPage = AlertPage(title: title, msg: result.1, buttonOk: ok)
+                    DispatchQueue.main.async {
+                        //self.isPresentedAlert.toggle()
+                    }
+                }
+            }
             break
         default:
             break

@@ -97,6 +97,9 @@ struct SignInScreenView: BaseView {
                     })
                 Spacer()
             }
+            .sheet(isPresented: $viewModel.presentSheet) {
+                Registration
+            }
             .alert(isPresented: $viewModel.isPresentedAlert) {
                 Alert(title: Text(viewModel.alertPage!.title), message: Text(viewModel.alertPage!.msg), dismissButton: .default(Text(viewModel.alertPage!.buttonOk)))
             }
@@ -105,6 +108,38 @@ struct SignInScreenView: BaseView {
             }
             .padding()
         }
+    }
+
+    var Registration: some View {
+        VStack {
+            Text("Registrati").font(.system(size: 30, weight: .bold, design: .default)).padding(.top,30).padding([.bottom],20)
+            Divider()
+            Group {
+                TextField("user", text: $viewModel.createUser)  .font(.title3)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("placeholder"))                  .cornerRadius(50.0)
+                    .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+                    .padding(.vertical)
+                    .foregroundColor(Color("textColor"))
+                    .autocapitalization(.none)
+                    .keyboardType(.emailAddress)
+                    .disableAutocorrection(true)
+                TextField("pass", text: $viewModel.createPassword)
+                    .font(.title3)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("placeholder"))                  .cornerRadius(50.0)
+                    .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+                    .foregroundColor(Color("textColor"))
+                createButton(image: Image(systemName: "person.fill.badge.plus"), text: Text("buttonS"), backgroundColor: Color("PrimaryColor"))
+                    .padding(.vertical).onTapGesture {
+                        self.viewModel.tapAction(actionTag: .actionCreateUser)
+                    }
+            }.padding([.leading,.trailing],20)
+            Spacer()
+        }
+        .presentationDetents([.medium, .large])
     }
     
 }

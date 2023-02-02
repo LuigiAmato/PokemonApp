@@ -20,6 +20,8 @@
 "buttonS" = "Share";
 "terms&condition" = "Terms & Condition.";
 "read" = "Read our";
+"createUser" = "Create User";
+
 
 // Alert
 "errorAlert" = "Error";
