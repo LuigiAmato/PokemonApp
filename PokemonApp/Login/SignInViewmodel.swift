@@ -11,7 +11,8 @@ import SwiftUI
 
 class SignInViewmodel: BaseViewmodel {
     var alertPage: AlertPage?
-    
+    private let network:Network = Network()
+
     @Published var email: String = "" {
         didSet {}
     }
@@ -32,21 +33,31 @@ class SignInViewmodel: BaseViewmodel {
     
     func tapAction(actionTag:ActionTag) {
         let title = NSLocalizedString("errorAlert", comment: "")
-        let msg = NSLocalizedString("msgAlert1", comment: "")
+        var msg = NSLocalizedString("msgAlert1", comment: "")
         let ok = NSLocalizedString("okAlert", comment: "")
         switch actionTag {
         case .actionDone:
-            self.isPresentedMenu.toggle()
-            /*
             if email.isEmpty || password.isEmpty {
                 msg = NSLocalizedString("msgAlert", comment: "")
                 self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
                 self.isPresentedAlert.toggle()
             }
             else {
-                self.isPresentedMenu.toggle()
+                Task.init(){
+                    let result = await network.doLogin(email: email, password: password)
+                    if result.0 {
+                        DispatchQueue.main.async {
+                            self.isPresentedMenu.toggle()
+                        }
+                    }
+                    else {
+                        self.alertPage = AlertPage(title: title, msg: result.1, buttonOk: ok)
+                        DispatchQueue.main.async {
+                            self.isPresentedAlert.toggle()
+                        }
+                    }
+                }
             }
-             */
             break
         case .actionModal:
             self.isPresentedReader.toggle()

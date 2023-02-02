@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Firebase
 
 enum NetworkError:Error {
     case RequestError
@@ -51,6 +52,19 @@ enum Api {
 }
 
 class Network: ObservableObject {
+    
+    func doLogin(email:String,password:String) async -> (Bool,String) {
+        do {
+            print(email)
+            print(password)
+            let result:AuthDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            return (true,"")
+        }
+        catch {
+            print("Unexpected error: \(error).")
+            return (false,error.localizedDescription)
+        }
+    }
         
     func request<T: Codable>(request:URLRequest,completion:@escaping (Result<T, NetworkError>) -> Void) {
     
