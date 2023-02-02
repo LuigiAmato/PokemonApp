@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: BaseView {
     @StateObject fileprivate var viewModel = MenuViewmodel()
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         ZStack {
@@ -16,7 +17,7 @@ struct MenuView: BaseView {
             TabView() {
                     PokemonPageView(isLoading: $viewModel.isLoading)
                     PokemonStarPageView().environmentObject(viewModel)
-                    SettingsPageView()
+                    SettingsPageView().environmentObject(viewModel)
                 }.onAppear(){
                     viewModel.onAppear(from: self)
                 }
@@ -24,6 +25,11 @@ struct MenuView: BaseView {
             
         }
     }
+    
+    func dismissPage() {
+        dismiss()
+    }
+    
 }
 
 struct MenuView_Previews: PreviewProvider {

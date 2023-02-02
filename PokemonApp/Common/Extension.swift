@@ -22,4 +22,5 @@ public enum ActionTag {
     case actionPush
     case actionOther
     case actionPlus
+    case actionExitPage
 }

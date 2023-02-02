@@ -35,6 +35,15 @@ struct BasePageView_Previews: PreviewProvider {
 }
 
 protocol BaseView: View {
+    func dismissPage()
 }
+
+extension BaseView {
+    func dismissPage(){
+        print("")
+    }
+}
+
+
 
 

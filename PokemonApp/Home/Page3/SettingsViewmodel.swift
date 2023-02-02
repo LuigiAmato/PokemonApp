@@ -15,6 +15,8 @@ class SettingsViewmodel: BaseViewmodel {
     
     private var baseView:(any BaseView)?
     
+    @Published var list:[String] = ["Domandi frequenti","Chatbot","Recensione App","Contattaci","Info App"]
+    
     func onAppear(from: any BaseView) {
         self.baseView = from
     }
@@ -23,27 +25,9 @@ class SettingsViewmodel: BaseViewmodel {
         let title = NSLocalizedString("errorAlert", comment: "")
         var msg = NSLocalizedString("msgAlert1", comment: "")
         let ok = NSLocalizedString("okAlert", comment: "")
-        switch actionTag {
-        case .actionDone:
-            
-            break
-        case .actionModal:
-            
-            break
-        case .actionPlus:
-            self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
-            self.isPresentedAlert.toggle()
-            break
-        case .actionOther:
-            self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
-            self.isPresentedAlert.toggle()
-            break
-        default:
-            break
-        }
+        self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
+        self.isPresentedAlert.toggle()
     }
-    
-    
 }
 
 

@@ -16,7 +16,7 @@ class PokemonStarViewmodel: BaseViewmodel {
     @Published var isPresentedAlert: Bool = false
 
     func onAppear(from: any BaseView) {
-        Analytics.page(type: .PokemonStarPage)
+        Analytics.page(type: .PokemonSettingsPage)
         self.request()
     }
     
