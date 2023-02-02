@@ -67,7 +67,7 @@ struct DetailPokemonView: BaseView {
                             Text(("Abilità: ").uppercased())
                                 .padding(.leading,5)
                                 .padding(.trailing,5)
-                                .font(.system(size: 12, weight: .bold, design: .default)).padding(.leading,15)
+                                .font(.system(size: 15, weight: .bold, design: .default)).padding(.leading,15)
                             Spacer()
                         }
                         .padding(.top,15)
@@ -92,7 +92,7 @@ struct DetailPokemonView: BaseView {
                             Text(("Dettagli: ").uppercased())
                                 .padding(.leading,5)
                                 .padding(.trailing,5)
-                                .font(.system(size: 12, weight: .bold, design: .default)).padding(.leading,15)
+                                .font(.system(size: 15, weight: .bold, design: .default)).padding(.leading,15)
                             Spacer()
                         }
                         ZStack{
