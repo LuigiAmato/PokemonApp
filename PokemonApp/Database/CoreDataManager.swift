@@ -26,6 +26,11 @@ class CoreDataManager {
     
     func getDeck()->[PokemonItem]{
     
+        if Configuration.isMock {
+            print("Impossibile leggere Item con modalità mock attivata")
+            return []
+        }
+
         let fetchRequest: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
         do {
             lastDeckPokemon = try persistentContainer.viewContext.fetch(fetchRequest)
@@ -36,7 +41,6 @@ class CoreDataManager {
                     return pokemonItem
                 }
             )
-            
             return list
         }
         catch {
@@ -48,7 +52,7 @@ class CoreDataManager {
     func saveItem(item:PokemonItem){
         
         if Configuration.isMock {
-          print("Impossibile salvare Item con modalità mock attivata")
+           print("Impossibile salvare Item con modalità mock attivata")
            return
         }
         
@@ -81,6 +85,12 @@ class CoreDataManager {
     }
     
     func updateItem(item:PokemonItem)->Bool{
+        
+        if Configuration.isMock {
+           print("Impossibile effettuare update dell' Item con modalità mock attivata")
+           return false
+        }
+        
         let pokemonDb = lastDeckPokemon.last {$0.name == item.name}
         pokemonDb?.star = (item.star ?? false)
     

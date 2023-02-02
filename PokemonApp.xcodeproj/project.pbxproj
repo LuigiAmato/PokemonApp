@@ -38,6 +38,9 @@
 		C6755F102989839600D75758 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6755F0F2989839600D75758 /* MenuViewModel.swift */; };
 		C68F6270298BA5A700FD57C4 /* SettingsViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F626F298BA5A700FD57C4 /* SettingsViewmodel.swift */; };
 		C68F6272298BD09C00FD57C4 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F6271298BD09C00FD57C4 /* Configuration.swift */; };
+		C68F6275298BF23F00FD57C4 /* board.json in Resources */ = {isa = PBXBuildFile; fileRef = C68F6274298BF23F00FD57C4 /* board.json */; };
+		C68F6277298BF60300FD57C4 /* detail.json in Resources */ = {isa = PBXBuildFile; fileRef = C68F6276298BF60300FD57C4 /* detail.json */; };
+		C68F6279298BF65600FD57C4 /* detailAbility.json in Resources */ = {isa = PBXBuildFile; fileRef = C68F6278298BF65600FD57C4 /* detailAbility.json */; };
 		C6FCD4D22986639800510D9E /* console.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D02986639800510D9E /* console.xcdatamodeld */; };
 		C6FCD4D4298663C000510D9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D3298663C000510D9E /* CoreDataManager.swift */; };
 		C6FCD4D629866A3B00510D9E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D529866A3B00510D9E /* Log.swift */; };
@@ -104,6 +107,9 @@
 		C6755F0F2989839600D75758 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		C68F626F298BA5A700FD57C4 /* SettingsViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewmodel.swift; sourceTree = "<group>"; };
 		C68F6271298BD09C00FD57C4 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		C68F6274298BF23F00FD57C4 /* board.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = board.json; sourceTree = "<group>"; };
+		C68F6276298BF60300FD57C4 /* detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detail.json; sourceTree = "<group>"; };
+		C68F6278298BF65600FD57C4 /* detailAbility.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detailAbility.json; sourceTree = "<group>"; };
 		C6FCD4D12986639800510D9E /* console.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = console.xcdatamodel; sourceTree = "<group>"; };
 		C6FCD4D3298663C000510D9E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C6FCD4D529866A3B00510D9E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -303,6 +309,16 @@
 			path = ModelView;
 			sourceTree = "<group>";
 		};
+		C68F6273298BF22000FD57C4 /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				C68F6278298BF65600FD57C4 /* detailAbility.json */,
+				C68F6276298BF60300FD57C4 /* detail.json */,
+				C68F6274298BF23F00FD57C4 /* board.json */,
+			);
+			path = mock;
+			sourceTree = "<group>";
+		};
 		C6FCD4C9298662C400510D9E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +411,7 @@
 		C6FCD4EF29867D1400510D9E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C68F6273298BF22000FD57C4 /* mock */,
 				C6FCD4F029867D2300510D9E /* Network.swift */,
 				C68F6271298BD09C00FD57C4 /* Configuration.swift */,
 			);
@@ -510,6 +527,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C68F6279298BF65600FD57C4 /* detailAbility.json in Resources */,
+				C68F6277298BF60300FD57C4 /* detail.json in Resources */,
+				C68F6275298BF23F00FD57C4 /* board.json in Resources */,
 				C65A6094298408A60013CD5C /* Preview Assets.xcassets in Resources */,
 				C63000742986CD0300E80620 /* Localizable.strings in Resources */,
 				C630008E2986EEB200E80620 /* listPokemon.json in Resources */,

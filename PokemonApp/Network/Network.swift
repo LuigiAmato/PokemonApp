@@ -20,13 +20,18 @@ enum NetworkError:Error {
 enum Api {
     static public let hostResources = Configuration.hostResources
     static private let hostService = Configuration.hostService
+    static public var mockName:String = ""
+
     var path:String {
         switch self {
         case let .board(offset,limit) :
+            Api.mockName = "board.json"
             return Api.hostService + "pokemon?offset=\(offset)&limit=\(limit)"
         case let .detail(name) :
+            Api.mockName = "detail.json"
             return Api.hostService + "pokemon/"+name
         case let .detailAbility(name) :
+            Api.mockName = "detailAbility.json"
             return Api.hostService + "ability/"+name
         }
    
@@ -41,14 +46,18 @@ enum Api {
         }
         return URLRequest(url: url)
     }
+    
+   
 }
 
 class Network: ObservableObject {
     
+
+    
     func request<T: Codable>(request:URLRequest,completion:@escaping (Result<T, NetworkError>) -> Void) {
     
         if Configuration.isMock {
-            completion(.failure(.ErrorMock))
+            _ = processJSONData(filename: Api.mockName,completion: completion)
             return
         }
                 
@@ -72,8 +81,8 @@ class Network: ObservableObject {
                 }
                 DispatchQueue.main.async {
                     do {
-                        let decodedUsers = try JSONDecoder().decode(T.self, from: data)
-                        completion(.success(decodedUsers))
+                        let decoder = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(decoder))
                     } catch let error {
                         print("Error decoding: ", error)
                         completion(.failure(.DecodingError))
@@ -87,6 +96,29 @@ class Network: ObservableObject {
         }
 
         dataTask.resume()
+    }
+    
+    private func processJSONData<T: Decodable>(filename: String,completion:@escaping (Result<T, NetworkError>)-> Void) {
+        var data: Data = Data()
+        guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
+        else {
+            completion(.failure(.ErrorMock))
+            return
+        }
+        
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            completion(.failure(.ErrorMock))
+            return
+        }
+        
+        do {
+            let decoder = try JSONDecoder().decode(T.self, from: data)
+            completion(.success(decoder))
+        } catch {
+            completion(.failure(.ErrorMock))
+        }
     }
     
 }
