@@ -46,6 +46,12 @@ class CoreDataManager {
     }
     
     func saveItem(item:PokemonItem){
+        
+        if Configuration.isMock {
+          print("Impossibile salvare Item con modalità mock attivata")
+           return
+        }
+        
         let pokemonItem = Pokemon(context:persistentContainer.viewContext)
         pokemonItem.id = item.id
         pokemonItem.name = item.name
@@ -61,7 +67,6 @@ class CoreDataManager {
     }
     
     func deleteItem(name:String){
-        let getAllPokemon = self.getDeck()
         let pokemonItem = Pokemon(context:persistentContainer.viewContext)
         pokemonItem.name = name
         pokemonItem.id = UUID()

@@ -55,10 +55,9 @@ class PokemonPageViewmodel: BaseViewmodel {
         // "Page \((offset/limit)+1)"
     }
     
-    private func request(){
+    private func request() {
         var listDB = self.coreDM.getDeck()
-        listDB = listDB.filter({$0.offset <= self.offset }) //&& ($0.star ?? false)})
-        
+        listDB = listDB.filter({$0.offset <= self.offset })          
         if !listDB.isEmpty {
             self.listComplete = listDB
             self.searchResults(searchText: self.searchText)
