@@ -22,7 +22,8 @@ class SignInViewmodel: BaseViewmodel {
     @Published var isPresentedReader = false
     @Published var isPresentedMenu = false
     @Published var isPresentedAlert = false
-    
+    @Published var showPassword: Bool = false
+
     public var urlTermsCond: String = Configuration.termsAndConditions
     
     private var baseView:(any BaseView)?
@@ -37,6 +38,9 @@ class SignInViewmodel: BaseViewmodel {
         var msg = NSLocalizedString("msgAlert1", comment: "")
         let ok = NSLocalizedString("okAlert", comment: "")
         switch actionTag {
+        case .actionPassword:
+            self.showPassword.toggle()
+            break
         case .actionDone:
             if email.isEmpty || password.isEmpty {
                 msg = NSLocalizedString("msgAlert", comment: "")

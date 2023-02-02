@@ -12,7 +12,7 @@
 
 // Login Page
 "tour" = "Tutorial";
-"pageLogin" = "Login";
+"pageLogin" = "Accedi";
 "user" = "Username";
 "pass" = "Password";
 "buttonA" = "Accedi";

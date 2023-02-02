@@ -33,7 +33,7 @@ struct WelcomeScreenView: BaseView {
             Spacer().frame(height: 100)
             Image(uiImage: #imageLiteral(resourceName: "onboard")).resizable().frame(width: 250,height: 195)
             Spacer()
-            PrimaryButton(title: "Tour").onTapGesture {
+            PrimaryButton(title: NSLocalizedString("tour", comment: "")).onTapGesture {
                 self.viewModel.tapAction(actionTag: .actionModal)
             }
             Text("pageLogin")

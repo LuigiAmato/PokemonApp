@@ -10,7 +10,43 @@ import SwiftUI
 struct SignInScreenView: BaseView {
     
     @ObservedObject var viewModel: SignInViewmodel = SignInViewmodel()
-
+    
+    
+    var Password: some View {
+        ZStack(alignment: .trailing) {
+            Group {
+                if viewModel.showPassword {
+                    TextField("pass", text: $viewModel.password)  .font(.title3)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color("placeholder"))                  .cornerRadius(50.0)
+                        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+                        .padding(.vertical)
+                        .foregroundColor(Color("textColor"))
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
+                        .disableAutocorrection(true)
+                } else {
+                    SecureField("pass", text: $viewModel.password)
+                        .font(.title3)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color("placeholder"))                  .cornerRadius(50.0)
+                        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+                        .padding(.vertical)
+                        .foregroundColor(Color("textColor"))
+                }
+            }
+            Button(action: {
+                self.viewModel.tapAction(actionTag: ActionTag.actionPassword)
+            }) {
+                Image(systemName: viewModel.showPassword ? "eye" : "eye.slash")
+                    .accentColor(.gray)
+            }.padding(.trailing,20)
+            
+        }
+    }
+    
     var body: some View {
         ZStack {
             Color("BgColor").edgesIgnoringSafeArea(.all)
@@ -29,15 +65,10 @@ struct SignInScreenView: BaseView {
                         .background(Color("placeholder"))
                         .foregroundColor(Color("textColor"))
                         .cornerRadius(50.0)
-                        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                    SecureField("pass", text: $viewModel.password)
-                        .font(.title3)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("placeholder"))                  .cornerRadius(50.0)
-                        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                        .padding(.vertical)
-                        .foregroundColor(Color("textColor"))
+                        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16).autocapitalization(.none)
+                        .keyboardType(.emailAddress)
+                        .disableAutocorrection(true)
+                    Password
                     PrimaryButton(title: NSLocalizedString("buttonA", comment: "")).padding(.vertical).fullScreenCover(isPresented: $viewModel.isPresentedMenu, content: {
                         MenuView()
                     }).onTapGesture {
@@ -45,8 +76,8 @@ struct SignInScreenView: BaseView {
                     }
                     createButton(image:  Image(systemName: "highlighter"), text: Text("buttonR"), backgroundColor: Color("SecondaryColor"))
                         .onTapGesture {
-                        self.viewModel.tapAction(actionTag: .actionOther)
-                    }
+                            self.viewModel.tapAction(actionTag: .actionOther)
+                        }
                     createButton(image: Image(systemName: "paperplane"), text: Text("buttonS"), backgroundColor: Color("PrimaryColor"))
                         .padding(.vertical).onTapGesture {
                             self.viewModel.tapAction(actionTag: .actionPlus)
@@ -59,7 +90,7 @@ struct SignInScreenView: BaseView {
                 Text("terms&condition")
                     .onTapGesture() {
                         self.viewModel.tapAction(actionTag: .actionModal)
-                        }
+                    }
                     .foregroundColor(Color("PrimaryColor"))
                     .fullScreenCover(isPresented: $viewModel.isPresentedReader, content: {
                         ReaderPage(url:viewModel.urlTermsCond ,titlePage: NSLocalizedString("terms&condition", comment: ""))
