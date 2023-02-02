@@ -75,7 +75,7 @@ class PokemonPageViewmodel: BaseViewmodel {
                     var index = 1
                     let list = response.results.map(
                         {
-                            let urlImage = Api.baseUrlImage + "\(index).png"
+                            let urlImage = Api.hostResources + "\(index).png"
                             let pokemon = PokemonItem.init(id:UUID(),name: $0.name, offset: self.offset,urlImage:urlImage)
                             self.coreDM.saveItem(item: pokemon)
                             index = index + 1

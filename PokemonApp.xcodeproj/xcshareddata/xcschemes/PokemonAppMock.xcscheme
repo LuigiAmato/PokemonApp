@@ -28,28 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C65A6098298408A60013CD5C"
-               BuildableName = "PokemonAppTests.xctest"
-               BlueprintName = "PokemonAppTests"
-               ReferencedContainer = "container:PokemonApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C65A60A2298408A60013CD5C"
-               BuildableName = "PokemonAppUITests.xctest"
-               BlueprintName = "PokemonAppUITests"
-               ReferencedContainer = "container:PokemonApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -74,13 +52,13 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "HOST_IMG"
-            value = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+            key = "MOCK"
+            value = "true"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "MOCK"
-            value = "false"
+            key = "HOST_IMG"
+            value = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

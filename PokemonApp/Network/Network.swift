@@ -14,19 +14,20 @@ enum NetworkError:Error {
     case ServerError
     case DecodingError
     case ErrorUrl
+    case ErrorMock
 }
 
 enum Api {
-    static public let baseUrlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-    static private let baseUrl = "https://pokeapi.co/api/v2/"
+    static public let hostResources = Configuration.hostResources
+    static private let hostService = Configuration.hostService
     var path:String {
         switch self {
         case let .board(offset,limit) :
-            return Api.baseUrl + "pokemon?offset=\(offset)&limit=\(limit)"
+            return Api.hostService + "pokemon?offset=\(offset)&limit=\(limit)"
         case let .detail(name) :
-            return Api.baseUrl + "pokemon/"+name
+            return Api.hostService + "pokemon/"+name
         case let .detailAbility(name) :
-            return Api.baseUrl + "ability/"+name
+            return Api.hostService + "ability/"+name
         }
    
     }
@@ -46,6 +47,11 @@ class Network: ObservableObject {
     
     func request<T: Codable>(request:URLRequest,completion:@escaping (Result<T, NetworkError>) -> Void) {
     
+        if Configuration.isMock {
+            completion(.failure(.ErrorMock))
+            return
+        }
+                
         let urlRequest = request
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {

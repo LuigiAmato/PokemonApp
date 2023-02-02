@@ -37,6 +37,7 @@
 		C6755F0D2989664A00D75758 /* PokemonStarViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6755F0C2989664A00D75758 /* PokemonStarViewmodel.swift */; };
 		C6755F102989839600D75758 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6755F0F2989839600D75758 /* MenuViewModel.swift */; };
 		C68F6270298BA5A700FD57C4 /* SettingsViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F626F298BA5A700FD57C4 /* SettingsViewmodel.swift */; };
+		C68F6272298BD09C00FD57C4 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F6271298BD09C00FD57C4 /* Configuration.swift */; };
 		C6FCD4D22986639800510D9E /* console.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D02986639800510D9E /* console.xcdatamodeld */; };
 		C6FCD4D4298663C000510D9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D3298663C000510D9E /* CoreDataManager.swift */; };
 		C6FCD4D629866A3B00510D9E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D529866A3B00510D9E /* Log.swift */; };
@@ -102,6 +103,7 @@
 		C6755F0C2989664A00D75758 /* PokemonStarViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonStarViewmodel.swift; sourceTree = "<group>"; };
 		C6755F0F2989839600D75758 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		C68F626F298BA5A700FD57C4 /* SettingsViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewmodel.swift; sourceTree = "<group>"; };
+		C68F6271298BD09C00FD57C4 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		C6FCD4D12986639800510D9E /* console.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = console.xcdatamodel; sourceTree = "<group>"; };
 		C6FCD4D3298663C000510D9E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C6FCD4D529866A3B00510D9E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				C6FCD4F029867D2300510D9E /* Network.swift */,
+				C68F6271298BD09C00FD57C4 /* Configuration.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				C63000942986EF9C00E80620 /* DetailPokemonView.swift in Sources */,
 				C6755F0D2989664A00D75758 /* PokemonStarViewmodel.swift in Sources */,
 				C65794DE298A83C400F1D76C /* DetailPokemonViewmodel.swift in Sources */,
+				C68F6272298BD09C00FD57C4 /* Configuration.swift in Sources */,
 				C6FCD4E329866FD500510D9E /* SignInScreenView.swift in Sources */,
 				C63000922986EF6E00E80620 /* PokemonBallView.swift in Sources */,
 				C63000A0298802C000E80620 /* BaseViewmodel.swift in Sources */,
