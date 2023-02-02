@@ -32,7 +32,7 @@ class SignInViewmodel: BaseViewmodel {
     
     func tapAction(actionTag:ActionTag) {
         let title = NSLocalizedString("errorAlert", comment: "")
-        var msg = NSLocalizedString("msgAlert1", comment: "")
+        let msg = NSLocalizedString("msgAlert1", comment: "")
         let ok = NSLocalizedString("okAlert", comment: "")
         switch actionTag {
         case .actionDone:

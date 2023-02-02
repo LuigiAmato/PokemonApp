@@ -32,7 +32,7 @@ enum Api {
             return Api.hostService + "pokemon/"+name
         case let .detailAbility(name) :
             Api.mockName = "detailAbility.json"
-            return Api.hostService + "ability/"+name
+            return Api.hostService + "ability/"+(name.lowercased())
         }
    
     }
@@ -51,13 +51,11 @@ enum Api {
 }
 
 class Network: ObservableObject {
-    
-
-    
+        
     func request<T: Codable>(request:URLRequest,completion:@escaping (Result<T, NetworkError>) -> Void) {
     
         if Configuration.isMock {
-            _ = processJSONData(filename: Api.mockName,completion: completion)
+            processJSONData(filename: Api.mockName,completion: completion)
             return
         }
                 

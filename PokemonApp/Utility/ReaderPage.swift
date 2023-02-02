@@ -37,20 +37,6 @@ struct ReaderPage: View {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         let count = UIApplication.shared.windows.count
         UIApplication.shared.windows[count-1].rootViewController?.present(activityVC, animated: true, completion: nil)
-        /*
-        let config = WKPDFConfiguration()
-        wk.createPDF(configuration: config){ result in
-            switch result{
-            case .success(let data):
-                guard let urlShare = URL(string: url) else { return }
-                let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-                let count = UIApplication.shared.windows.count
-                UIApplication.shared.windows[count-1].rootViewController?.present(activityVC, animated: true, completion: nil)
-            case .failure(let error):
-                print(error)
-            }
-        }
-         */
     }
 }
 

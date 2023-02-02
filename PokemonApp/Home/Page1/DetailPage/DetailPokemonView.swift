@@ -136,8 +136,21 @@ struct DetailPokemonView: BaseView {
         .sheet(isPresented: $viewModel.presentSheet) {
             
             VStack {
-                Text(viewModel.abilityDetail?.short_effect ?? "Not Found")
-                Text(viewModel.abilityDetail?.effect ?? "Not Found")
+                Text(viewModel.abilityNameSelected).font(.system(size: 20, weight: .bold, design: .default)).padding(.top,30).padding([.bottom],20)
+                Divider()
+                HStack {
+                Text("Sintesi: ").font(.system(size: 20, weight: .bold, design: .default)).padding([.bottom,.leading],5)
+                    Spacer()
+                }
+                Text(viewModel.abilityDetail?.short_effect ?? "Not Found").background(content: {
+                }).frame(width: UIScreen.screenWidth*0.9).padding(.bottom,10)
+                HStack {
+                    Text("Dettaglio: ").font(.system(size: 20, weight: .bold, design: .default)).padding([.bottom,.leading],5)
+                    Spacer()
+                }
+                Text(viewModel.abilityDetail?.effect ?? "Not Found").background(content: {
+                }).frame(width: UIScreen.screenWidth*0.9)
+                Spacer()
             }
             .presentationDetents([.medium, .large])
         }

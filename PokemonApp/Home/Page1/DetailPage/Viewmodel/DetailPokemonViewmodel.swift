@@ -21,6 +21,7 @@ class DetailPokemonViewmodel: BaseViewmodel {
     private var abilities:[AbilitiesResponse] = []
     @Published var presentSheet = false
     public var abilityDetail:EffectEntries? = nil
+    public var abilityNameSelected:String = ""
 
     func onAppear(from: any BaseView) {
         Analytics.page(type: .PokemonPage)                
@@ -28,6 +29,7 @@ class DetailPokemonViewmodel: BaseViewmodel {
     }
     
     func onAppearSheet(abilityName:String) {
+        self.abilityNameSelected = abilityName
         Analytics.page(type: .PokemonDetailPageSheet)
         self.requestAbility(ability: abilityName)
     }
@@ -56,7 +58,6 @@ class DetailPokemonViewmodel: BaseViewmodel {
     }
     
     private func request(){
-        
         self.callbackIsLoading?()
         guard let request = Api.detail(name: self.pokemon.name).toUrlRequest() else { return }
         self.network.request(request: request) { [weak self] (result:Result<PokemonDetailResponse, NetworkError>) in
@@ -85,7 +86,6 @@ class DetailPokemonViewmodel: BaseViewmodel {
     }
     
     private func requestAbility(ability:String){
-        
         self.callbackIsLoading?()
         guard let request = Api.detailAbility(name: ability).toUrlRequest() else { return }
         self.network.request(request: request) { [weak self] (result:Result<AbilityDetailResponse, NetworkError>) in
@@ -94,6 +94,7 @@ class DetailPokemonViewmodel: BaseViewmodel {
             case .success(let response):
                 self.callbackIsLoading?()
                 self.abilityDetail = response.effect_entries.filter {$0.language.name.lowercased() == "en"}.last
+                self.presentSheet.toggle()
                 break
             case .failure(let error):
                 Log.log(value: error)
