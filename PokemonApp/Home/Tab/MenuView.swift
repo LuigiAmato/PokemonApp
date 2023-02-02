@@ -16,7 +16,7 @@ struct MenuView: BaseView {
             TabView() {
                     PokemonPageView(isLoading: $viewModel.isLoading)
                     PokemonStarPageView().environmentObject(viewModel)
-                    SettingsPageView(titleTab: "Impostazioni",titleIcon: "lanyardcard.fill")
+                    SettingsPageView()
                 }.onAppear(){
                     viewModel.onAppear(from: self)
                 }

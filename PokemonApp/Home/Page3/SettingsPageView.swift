@@ -7,19 +7,36 @@
 
 import SwiftUI
 
-struct SettingsPageView: View {
-    @State public var titleTab = ""
-    @State public var titleIcon = ""
+struct SettingsPageView: BaseView {
+    
+    private var titleTab = NSLocalizedString("titlePage3", comment: "")
+    private var titleIcon = "lanyardcard.fill"
+    
+    @StateObject fileprivate var viewModel = PokemonStarViewmodel()
+    @EnvironmentObject var viewModelMenu: MenuViewmodel
     
     var body: some View {
-        List {
-           ForEach(0..<5) { _ in
-             Text("Integer")
-           }
-        }.tabItem {
+        NavigationStack {
+            List {
+                ForEach(0..<5) { _ in
+                    Text("Integer")
+                }
+            }.tabItem {
+                Label(titleTab, systemImage: titleIcon)
+            }
+        }
+        .alert(isPresented: $viewModel.isPresentedAlert) {
+            Alert(title: Text(viewModel.alertPage!.title), message: Text(viewModel.alertPage!.msg), dismissButton: .default(Text(viewModel.alertPage!.buttonOk)))
+        }
+        .navigationTitle(self.titleTab)
+        .onAppear(){
+            viewModel.onAppear(from: self)
+        }
+        .tabItem {
             Label(titleTab, systemImage: titleIcon)
         }
     }
+    
 }
 
 struct SettingsPageView_Previews: PreviewProvider {
