@@ -34,6 +34,7 @@ class CoreDataManager {
         let fetchRequest: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
         do {
             lastDeckPokemon = try persistentContainer.viewContext.fetch(fetchRequest)
+            lastDeckPokemon = lastDeckPokemon.filter { $0.idUser == SessionManager.Shared.idUser }
             let list = lastDeckPokemon.map(
                 {
                     let pokemon:Pokemon = $0
@@ -57,6 +58,7 @@ class CoreDataManager {
         }
         
         let pokemonItem = Pokemon(context:persistentContainer.viewContext)
+        pokemonItem.idUser = SessionManager.Shared.idUser
         pokemonItem.id = item.id
         pokemonItem.name = item.name
         pokemonItem.offset =  item.offset
@@ -72,6 +74,7 @@ class CoreDataManager {
     
     func deleteItem(name:String){
         let pokemonItem = Pokemon(context:persistentContainer.viewContext)
+        pokemonItem.idUser = SessionManager.Shared.idUser
         pokemonItem.name = name
         pokemonItem.id = UUID()
         persistentContainer.viewContext.delete(pokemonItem)
@@ -91,7 +94,7 @@ class CoreDataManager {
            return false
         }
         
-        let pokemonDb = lastDeckPokemon.last {$0.name == item.name}
+        let pokemonDb = lastDeckPokemon.last {$0.name == item.name && $0.idUser == SessionManager.Shared.idUser }
         pokemonDb?.star = (item.star ?? false)
     
         do {
