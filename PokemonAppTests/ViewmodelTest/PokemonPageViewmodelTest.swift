@@ -12,62 +12,65 @@ import SwiftUI
 
 
 @MainActor class PokemonPageViewmodelTest: XCTestCase,TestBase{
-    
-    
-    var callbackIsLoading: (() -> Void)?
-    
-    private static var viewModel: PokemonPageViewmodel = PokemonPageViewmodel()
-    
+        
+    private static let pokemonPageView = PokemonPageView(isLoading: .constant(false))
+    private var view:PokemonPageView!
+    private var viewModel: PokemonPageViewmodel!
+
     @MainActor override func setUp() {
         super.setUp()
+        view = PokemonPageViewmodelTest.pokemonPageView
+        viewModel = view.viewModel
     }
-    
+
     func testStart() async{
-        XCTAssertFalse(PokemonPageViewmodelTest.viewModel.list.isEmpty)
-        XCTAssertFalse(PokemonPageViewmodelTest.viewModel.listComplete.isEmpty)
-        XCTAssertTrue(PokemonPageViewmodelTest.viewModel.searchText == "")
-        XCTAssertNotNil(PokemonPageViewmodelTest.viewModel.network)
-        XCTAssertNotNil(PokemonPageViewmodelTest.viewModel.coreDM)
-        XCTAssertTrue(PokemonPageViewmodelTest.viewModel.limit == 50)
-        XCTAssertTrue(PokemonPageViewmodelTest.viewModel.offset == 0)
+        XCTAssertTrue(self.viewModel.searchText == "")
+        XCTAssertNotNil(self.viewModel.network)
+        XCTAssertNotNil(self.viewModel.coreDM)
+        XCTAssertTrue(self.viewModel.limit == 50)
+        XCTAssertTrue(self.viewModel.offset == 0)
+        XCTAssertNotNil(view.body)
     }
     
     func testOnAppear() async {
-        XCTAssertFalse(PokemonPageViewmodelTest.viewModel.isPresentedAlert)
-        XCTAssertNil(PokemonPageViewmodelTest.viewModel.callbackIsLoading)
-        XCTAssertNil(PokemonPageViewmodelTest.viewModel.alertPage)
-        PokemonPageViewmodelTest.viewModel.onAppear(from: TestBaseView())
-        PokemonPageViewmodelTest.viewModel.callbackIsLoading = {}
-        XCTAssertNotNil(PokemonPageViewmodelTest.viewModel.callbackIsLoading)
-        XCTAssertTrue(PokemonPageViewmodelTest.viewModel.listComplete.count == 50)
-        PokemonPageViewmodelTest.viewModel.onItemAppear(item: PokemonItem(id: UUID(), name: "", offset: 0, urlImage: ""))
-        XCTAssertTrue(PokemonPageViewmodelTest.viewModel.listComplete.count == 50)
+        XCTAssertTrue(self.viewModel.list.isEmpty)
+        XCTAssertTrue(self.viewModel.listComplete.isEmpty)
+        XCTAssertFalse(self.viewModel.isPresentedAlert)
+        XCTAssertNil(self.viewModel.callbackIsLoading)
+        XCTAssertNil(self.viewModel.alertPage)
+        self.viewModel.onAppear(from: view)
+        self.viewModel.callbackIsLoading = {}
+        XCTAssertNotNil(self.viewModel.callbackIsLoading)
+        XCTAssertTrue(self.viewModel.listComplete.count == 50)
+        self.viewModel.onItemAppear(item: PokemonItem(id: UUID(), name: "", offset: 0, urlImage: ""))
+        XCTAssertTrue(self.viewModel.list.count == 50)
+        self.viewModel.searchResults(searchText: "bulbasaur")
+        XCTAssertTrue(self.viewModel.listComplete.count == 50)
+        XCTAssertTrue(self.viewModel.list.count == 1)
+        XCTAssertNotNil(view.body)
     }
     
     func testAction() async {
-        PokemonPageViewmodelTest.viewModel.tapAction(actionTag: ActionTag.actionDone)
+        self.viewModel.tapAction(actionTag: ActionTag.actionDone)
     }
     
     func testStartPokemon() async {
-        PokemonPageViewmodelTest.viewModel.onLongPressGesture(pokemon: PokemonItem(id: UUID(), name: "", offset: 0, urlImage: ""))
-        XCTAssertNotNil(PokemonPageViewmodelTest.viewModel.alertPage)
-        XCTAssertTrue(PokemonPageViewmodelTest.viewModel.isPresentedAlert)
+        self.viewModel.onLongPressGesture(pokemon: PokemonItem(id: UUID(), name: "", offset: 0, urlImage: ""))
+        XCTAssertNotNil(self.viewModel.alertPage)
+        XCTAssertTrue(self.viewModel.isPresentedAlert)
+        XCTAssertNotNil(view.body)
     }
     
     func testSearchPokemon() async {
         Task {
-            print(PokemonPageViewmodelTest.viewModel.listComplete.count)
-            print(PokemonPageViewmodelTest.viewModel.list.count)
-            PokemonPageViewmodelTest.viewModel.searchResults(searchText: "")
-            print(PokemonPageViewmodelTest.viewModel.listComplete.count)
-            print(PokemonPageViewmodelTest.viewModel.list.count)
-            XCTAssertTrue(PokemonPageViewmodelTest.viewModel.listComplete.count == 50)
-            XCTAssertTrue(PokemonPageViewmodelTest.viewModel.list.count == 50)
-            PokemonPageViewmodelTest.viewModel.searchResults(searchText: "bulbasaur")
-            XCTAssertTrue(PokemonPageViewmodelTest.viewModel.listComplete.count == 50)
-            XCTAssertTrue(PokemonPageViewmodelTest.viewModel.list.count == 1)
-           }
+            print(self.viewModel.listComplete.count)
+            print(self.viewModel.list.count)
+            self.viewModel.searchResults(searchText: "")
+            print(self.viewModel.listComplete.count)
+            print(self.viewModel.list.count)
+        }
     }
 }
+
 
 

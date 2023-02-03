@@ -22,8 +22,6 @@ import SwiftUI
         XCTAssertNil(PokemonDetailViewmodelTest.viewModel.callbackIsLoading)
         XCTAssertNotNil(PokemonDetailViewmodelTest.viewModel.coreDM)
         XCTAssertNotNil(PokemonDetailViewmodelTest.viewModel.network)
-        XCTAssertNil(PokemonDetailViewmodelTest.viewModel.abilityDetail)
-        XCTAssertTrue(PokemonDetailViewmodelTest.viewModel.abilityNameSelected.isEmpty)
     }
     
     func testOnAppear() async {
@@ -37,6 +35,8 @@ import SwiftUI
     }
     
     func testStartPokemon() async {
+        XCTAssertNil(PokemonDetailViewmodelTest.viewModel.abilityDetail)
+        XCTAssertTrue(PokemonDetailViewmodelTest.viewModel.abilityNameSelected.isEmpty)
         XCTAssertFalse(PokemonDetailViewmodelTest.viewModel.presentSheet)
         XCTAssertNil(PokemonDetailViewmodelTest.viewModel.alertPage)
         XCTAssertFalse(PokemonDetailViewmodelTest.viewModel.isPresentedAlert)

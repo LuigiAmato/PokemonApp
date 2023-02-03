@@ -25,11 +25,13 @@ import SwiftUI
         XCTAssertNil(viewModel.alertPage)
         XCTAssertFalse(viewModel.isPresentedAlert)
         XCTAssertFalse(viewModel.isPresentedLogin)
-        XCTAssertNil(viewModel.baseView)
+        XCTAssertNil(viewModel.baseView)      
+        XCTAssertTrue(SessionManager.Shared.user.isEmpty)
+        XCTAssertTrue(SessionManager.Shared.idUser.isEmpty)
     }
     
     func testOnAppear() async {
-        viewModel.onAppear(from: TestBaseView())
+        viewModel.onAppear(from: WelcomeScreenView())
         XCTAssertNotNil(viewModel.baseView)
     }
     
@@ -41,6 +43,7 @@ import SwiftUI
         XCTAssertNotNil(viewModel.alertPage)
         viewModel.tapAction(actionTag: ActionTag.actionPlus)
         XCTAssertTrue(viewModel.isPresentedLogin)
+        Log.log(value: "Test")
     }
 }
 

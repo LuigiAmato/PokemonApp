@@ -12,9 +12,7 @@ import SwiftUI
 class SettingsViewmodel: BaseViewmodel {
     var alertPage: AlertPage?
     @Published var isPresentedAlert = false
-    
-    private var baseView:(any BaseView)?
-    
+    var baseView:(any BaseView)?
     @Published var list:[String] = ["Domandi frequenti","Chatbot","Recensione App","Contattaci","Info App"]
     
     func onAppear(from: any BaseView) {

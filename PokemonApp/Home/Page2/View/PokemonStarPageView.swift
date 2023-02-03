@@ -12,7 +12,7 @@ struct PokemonStarPageView: BaseView {
     private let titleTab = NSLocalizedString("titlePage2", comment: "")
     private let titleIcon = "list.star"
     
-    @StateObject fileprivate var viewModel = PokemonStarViewmodel()
+    @StateObject var viewModel = PokemonStarViewmodel()
     @EnvironmentObject var viewModelMenu: MenuViewmodel
 
     let columns = [

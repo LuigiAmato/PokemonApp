@@ -12,34 +12,41 @@ import SwiftUI
 
 @MainActor class SignInViewmodelTest: XCTestCase,TestBase{
     
-    //private var sender: MessageSenderMock!
+    private static let signIn = SignInScreenView()
+    private var view:SignInScreenView!
     private var viewModel: SignInViewmodel!
 
     @MainActor override func setUp() {
         super.setUp()
-        viewModel = SignInViewmodel()
+        view = SignInViewmodelTest.signIn
+        viewModel = SignInViewmodelTest.signIn.viewModel
     }
-
-    func testStart() async{
+    
+    func testOnAppear() async {
+        viewModel.onAppear(from:view)
+        XCTAssertNotNil(viewModel.baseView)
+        let pass = view.Password;
+        XCTAssertNotNil(pass)
+        let registration = view.Registration;
+        XCTAssertNotNil(registration)
+        let body = view.body;
+        XCTAssertNotNil(body)
+        let button = createButton(image: Image(systemName: "Star"), text: Text(""), backgroundColor: Color.red);
+        XCTAssertNotNil(button)
+    }
+    
+    func testAction() async {
+        XCTAssertTrue(viewModel.createUser == "")
+        XCTAssertTrue(viewModel.createPassword == "")
         XCTAssertFalse(viewModel.isPresentedMenu)
-        XCTAssertNil(viewModel.alertPage)
         XCTAssertFalse(viewModel.isPresentedAlert)
         XCTAssertFalse(viewModel.isPresentedReader)
         XCTAssertFalse(viewModel.showPassword)
         XCTAssertFalse(viewModel.presentSheet)
-        XCTAssertNil(viewModel.baseView)
         XCTAssertTrue(viewModel.email == "")
         XCTAssertTrue(viewModel.password == "")
-        XCTAssertTrue(viewModel.createUser == "")
-        XCTAssertTrue(viewModel.createPassword == "")
-    }
-    
-    func testOnAppear() async {
-        viewModel.onAppear(from: TestBaseView())
-        XCTAssertNotNil(viewModel.baseView)
-    }
-    
-    func testAction() async {
+        XCTAssertNil(viewModel.baseView)
+        XCTAssertNil(viewModel.alertPage)
         viewModel.tapAction(actionTag: ActionTag.actionDone)
         XCTAssertTrue(viewModel.email == "")
         XCTAssertTrue(viewModel.password == "")
@@ -55,11 +62,34 @@ import SwiftUI
         viewModel.tapAction(actionTag: ActionTag.actionOther)
         XCTAssertTrue(viewModel.presentSheet)
         viewModel.tapAction(actionTag: ActionTag.actionExitPage) // default
+        XCTAssertTrue(viewModel.urlTermsCond.count != 0)
+
+        viewModel.tapAction(actionTag: ActionTag.actionCreateUser)
+        XCTAssertTrue(viewModel.presentSheet)
+        viewModel.createUser = "test@gmail.com"
+        viewModel.createPassword = "Password1"
         viewModel.email = "test@gmail.com"
         viewModel.password = "Password1!"
         viewModel.tapAction(actionTag: ActionTag.actionDone)
         Task {
             XCTAssertTrue(self.viewModel.isPresentedMenu)
         }
+    }
+    
+    func testStart() async{
+        let reader = ReaderPage(url: "test",titlePage: "title")
+        let body = reader.body
+        XCTAssertFalse(reader.titlePage.isEmpty)
+        XCTAssertFalse(reader.url.isEmpty)
+        XCTAssertNotNil(body)
+        XCTAssertNotNil(reader.actionSheet())
+        let web = WebView(url: "test")
+        XCTAssertNotNil(web)
+        XCTAssertNotNil(web.delegateWeb)
+        XCTAssertFalse(web.url.isEmpty)
+        let base = BasePageView(isLoading: .constant(false))
+        XCTAssertNotNil(base)
+        XCTAssertNotNil(base.body)
+        XCTAssertFalse(base.isLoading)
     }
 }

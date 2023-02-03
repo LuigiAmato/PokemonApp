@@ -11,7 +11,6 @@ struct SignInScreenView: BaseView {
     
     @ObservedObject var viewModel: SignInViewmodel = SignInViewmodel()
     
-    
     var Password: some View {
         ZStack(alignment: .trailing) {
             Group {
@@ -149,7 +148,6 @@ struct SignInScreenView_Previews: PreviewProvider {
         SignInScreenView(viewModel: SignInViewmodel())
     }
 }
-
 
 struct createButton: View {
     var image: Image
