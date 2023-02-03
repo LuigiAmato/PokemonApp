@@ -29,11 +29,10 @@ class SignInViewmodel: BaseViewmodel {
     
     public var urlTermsCond: String = Configuration.termsAndConditions
     
-    private var baseView:(any BaseView)?
+    public var baseView:(any BaseView)?
     
     func onAppear(from: any BaseView) {
         self.baseView = from
-        
     }
     
     func tapAction(actionTag:ActionTag) {
@@ -55,6 +54,7 @@ class SignInViewmodel: BaseViewmodel {
                     let result = await network.doLogin(email: email, password: password)
                     if result.0 {
                         DispatchQueue.main.async {
+                            print("test model")
                             self.isPresentedMenu.toggle()
                         }
                     }
@@ -82,6 +82,7 @@ class SignInViewmodel: BaseViewmodel {
             
         case .actionCreateUser:
             // https://developer.apple.com/forums/thread/712263
+            // https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-scrolling-pages-of-content-using-tabviewstyle
             Task.init() {
                 let result = await self.network.createUser(email: self.createUser, password: self.createPassword)
                 if result.0 {
@@ -101,8 +102,6 @@ class SignInViewmodel: BaseViewmodel {
             break
         }
     }
-    
-  
 }
 
 

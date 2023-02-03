@@ -26,27 +26,17 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO"
+            skipped = "YES"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C65A6098298408A60013CD5C"
                BuildableName = "PokemonAppTests.xctest"
                BlueprintName = "PokemonAppTests"
-               ReferencedContainer = "container:PokemonApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C65A60A2298408A60013CD5C"
-               BuildableName = "PokemonAppUITests.xctest"
-               BlueprintName = "PokemonAppUITests"
                ReferencedContainer = "container:PokemonApp.xcodeproj">
             </BuildableReference>
          </TestableReference>

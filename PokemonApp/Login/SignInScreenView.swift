@@ -132,7 +132,7 @@ struct SignInScreenView: BaseView {
                     .background(Color("placeholder"))                  .cornerRadius(50.0)
                     .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                     .foregroundColor(Color("textColor"))
-                createButton(image: Image(systemName: "person.fill.badge.plus"), text: Text("buttonS"), backgroundColor: Color("PrimaryColor"))
+                createButton(image: Image(systemName: "person.fill.badge.plus"), text: Text("createUser"), backgroundColor: Color("PrimaryColor"))
                     .padding(.vertical).onTapGesture {
                         self.viewModel.tapAction(actionTag: .actionCreateUser)
                     }

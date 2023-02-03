@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Firebase
 @testable import PokemonApp
 
 final class PokemonAppTests: XCTestCase {
@@ -19,11 +20,21 @@ final class PokemonAppTests: XCTestCase {
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        /*
+        let app = XCUIApplication()
+        app.launchArguments = ["isRunningUITests"]
+        app.launch()
+        
+        let timeout = 2
+            let loginButton = app.buttons["loginButton"]
+        XCTAssertTrue(loginButton.waitForExistence(timeout: TimeInterval(timeout)))
+            loginButton.tap()
+        
+        let usernameInputField = app.textFields["usernameInputField"]
+           let passwordInputField = app.textFields["passwordInputField"]
+           let loginRequestButton = app.textFields["loginRequestButton"]
+
+        */
     }
 
     func testPerformanceExample() throws {
