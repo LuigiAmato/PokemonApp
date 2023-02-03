@@ -38,7 +38,6 @@ struct PokemonPageView: BaseView {
                 .alert(isPresented: $viewModel.isPresentedAlert) {
                     Alert(title: Text(viewModel.alertPage!.title), message: Text(viewModel.alertPage!.msg), dismissButton: .default(Text(viewModel.alertPage!.buttonOk)))
                 }
-                
                 .onAppear(){
                     viewModel.callbackIsLoading = {
                         print("callbackIsLoading")
@@ -61,7 +60,6 @@ struct PokemonPageView: BaseView {
             }
             .navigationTitle("titlePage1")
         }
-        
         .searchable(text: $viewModel.searchText, prompt: "Search")
         .tabItem {
             Label(titleTab, systemImage: titleIcon)

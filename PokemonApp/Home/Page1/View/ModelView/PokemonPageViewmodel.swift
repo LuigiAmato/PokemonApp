@@ -19,11 +19,10 @@ class PokemonPageViewmodel: BaseViewmodel {
             print(searchText)
             searchResults(searchText: searchText) }
     }
-    private var listComplete: [PokemonItem] = []
-    private let network:Network = Network()
-    private let limit:Int64 = 50;
-    private var offset:Int64 = 0;
-    
+    var listComplete: [PokemonItem] = []
+    let network:Network = Network()
+    let limit:Int64 = 50;
+    var offset:Int64 = 0;
     var callbackIsLoading: (() -> Void)?
     
     func onAppear(from: any BaseView) {
@@ -31,9 +30,7 @@ class PokemonPageViewmodel: BaseViewmodel {
         self.request()
     }
     
-    func tapAction(actionTag: ActionTag) {
-        
-    }
+    func tapAction(actionTag: ActionTag) {}
     
     func onLongPressGesture(pokemon:PokemonItem){
         let iStar = pokemon.star ?? false
@@ -63,7 +60,6 @@ class PokemonPageViewmodel: BaseViewmodel {
             self.searchResults(searchText: self.searchText)
         }
         else {
-            
             self.callbackIsLoading?()
             guard let request = Api.board(offset: self.offset, limit: self.limit).toUrlRequest() else { return }
             self.network.request(request: request) { [weak self] (result:Result<PokemonResponse, NetworkError>) in
@@ -101,7 +97,7 @@ class PokemonPageViewmodel: BaseViewmodel {
         }
     }
     
-    private func searchResults(searchText:String)-> Void {
+    func searchResults(searchText:String)-> Void {
         self.list = listComplete
         if searchText.isEmpty {
             
@@ -111,6 +107,4 @@ class PokemonPageViewmodel: BaseViewmodel {
             self.list = listFilter
         }
     }
-    
-    
 }

@@ -58,10 +58,8 @@ import SwiftUI
         viewModel.email = "test@gmail.com"
         viewModel.password = "Password1!"
         viewModel.tapAction(actionTag: ActionTag.actionDone)
-        let secondsToDelay = 1.0
-           DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
-               print("test menu")
-               XCTAssertTrue(self.viewModel.isPresentedMenu)
+        Task {
+            XCTAssertTrue(self.viewModel.isPresentedMenu)
         }
     }
 }

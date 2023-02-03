@@ -54,7 +54,7 @@ class SignInViewmodel: BaseViewmodel {
                     let result = await network.doLogin(email: email, password: password)
                     if result.0 {
                         DispatchQueue.main.async {
-                            print("test model")
+                            print("test menu")
                             self.isPresentedMenu.toggle()
                         }
                     }
@@ -76,8 +76,6 @@ class SignInViewmodel: BaseViewmodel {
             break
         case .actionOther: // shared
             self.presentSheet.toggle()
-            //self.alertPage = AlertPage(title: title, msg: msg, buttonOk: ok)
-           // self.isPresentedAlert.toggle()
             break
             
         case .actionCreateUser:

@@ -12,13 +12,13 @@ class DetailPokemonViewmodel: BaseViewmodel {
     var alertPage: AlertPage?
     let coreDM: CoreDataManager = CoreDataManager.shared
     @Published var isPresentedAlert:Bool = false
-    private let network:Network = Network()
+    public let network:Network = Network()
     var callbackIsLoading: (() -> Void)?
-    private var pokemon: PokemonItem!
+    public var pokemon: PokemonItem!
     @Published var stats:Array<Stat> = Array<Stat>()
     @Published var ability:Array<Stat> = Array<Stat>()
     @Published var base_experience: Int? = 0
-    private var abilities:[AbilitiesResponse] = []
+    public var abilities:[AbilitiesResponse] = []
     @Published var presentSheet = false
     public var abilityDetail:EffectEntries? = nil
     public var abilityNameSelected:String = ""
