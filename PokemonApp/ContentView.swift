@@ -12,9 +12,3 @@ struct ContentView: View {
         WelcomeScreenView()
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

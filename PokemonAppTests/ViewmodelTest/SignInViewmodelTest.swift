@@ -83,7 +83,7 @@ import SwiftUI
         XCTAssertFalse(reader.url.isEmpty)
         XCTAssertNotNil(body)
         XCTAssertNotNil(reader.actionSheet())
-        let web = WebView(url: "test")
+        let web = WebView(url: "http://www.google.com")
         XCTAssertNotNil(web)
         XCTAssertNotNil(web.delegateWeb)
         XCTAssertFalse(web.url.isEmpty)
@@ -91,5 +91,8 @@ import SwiftUI
         XCTAssertNotNil(base)
         XCTAssertNotNil(base.body)
         XCTAssertFalse(base.isLoading)
+        Analytics.action(type: .LoginAction)
+        CoreDataManager().deleteItem(name: "Prova")
+        
     }
 }

@@ -163,6 +163,8 @@
 		C68F6286298C14FB00FD57C4 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		C68F6288298C19CF00FD57C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C68F628A298D007400FD57C4 /* WelcomeViewmodelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewmodelTest.swift; sourceTree = "<group>"; };
+		C692DC65298D6EBF00C1D82F /* PokemonAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAppUITests.swift; sourceTree = "<group>"; };
+		C692DC67298D6EBF00C1D82F /* PokemonAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C6FCD4D12986639800510D9E /* console.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = console.xcdatamodel; sourceTree = "<group>"; };
 		C6FCD4D3298663C000510D9E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C6FCD4D529866A3B00510D9E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				C68F6283298C048F00FD57C4 /* GoogleService-Info.plist */,
 				C65A608B298408A40013CD5C /* PokemonApp */,
 				C65A609C298408A60013CD5C /* PokemonAppTests */,
+				C692DC64298D6EBF00C1D82F /* PokemonAppUITests */,
 				C65A608A298408A40013CD5C /* Products */,
 				C68F628D298D010800FD57C4 /* Frameworks */,
 			);
@@ -374,6 +377,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C692DC64298D6EBF00C1D82F /* PokemonAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C692DC65298D6EBF00C1D82F /* PokemonAppUITests.swift */,
+				C692DC67298D6EBF00C1D82F /* PokemonAppUITestsLaunchTests.swift */,
+			);
+			path = PokemonAppUITests;
 			sourceTree = "<group>";
 		};
 		C6FCD4C9298662C400510D9E /* Utility */ = {
