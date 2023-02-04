@@ -68,6 +68,19 @@ struct SignInScreenView: BaseView {
                         .keyboardType(.emailAddress)
                         .disableAutocorrection(true)
                     Password
+                    HStack {
+                        Text("Ricordami").padding()
+                        if self.viewModel.isRemembers {
+                            
+                        }
+                        Circle()
+                                   .strokeBorder(Color("divider"),lineWidth: 1)
+                                   .background(Circle().foregroundColor(Color("PrimaryColor"))).frame(width: 20,height: 20)
+                        Circle()
+                                   .strokeBorder(Color("Bgcolor"),lineWidth: 1)
+                                   .background(Circle().foregroundColor(Color("PrimaryColor"))).frame(width: 20,height: 20)
+                        Spacer()
+                    }
                     PrimaryButton(title: NSLocalizedString("buttonA", comment: "")).padding(.vertical).fullScreenCover(isPresented: $viewModel.isPresentedMenu, content: {
                         MenuView()
                     }).onTapGesture {

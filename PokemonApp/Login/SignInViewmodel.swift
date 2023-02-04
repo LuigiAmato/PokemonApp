@@ -22,24 +22,44 @@ class SignInViewmodel: BaseViewmodel {
     @Published var isPresentedReader = false
     @Published var isPresentedMenu = false
     @Published var isPresentedAlert = false
+    @Published var isRemembers:Bool = false
     @Published var showPassword: Bool = false
     @Published var presentSheet:Bool = false    
     @Published var createUser: String = ""
     @Published var createPassword: String = ""
     
+    private let account = Configuration.account
+    private let service = Configuration.service
     public var urlTermsCond: String = Configuration.termsAndConditions
     
     public var baseView:(any BaseView)?
     
     func onAppear(from: any BaseView) {
         self.baseView = from
+        if SharedPreferences().getValue(type: .getRemember) == String.isOk {
+            self.email = SharedPreferences().getValue(type: .getUsername)
+            let prova = KeychainHelper.standard.read(service: service, account: account)
+            print("")
+        }
     }
+    
+    private func saveCredential(){
+        if self.isRemembers && !self.password.isEmpty && !self.email.isEmpty {
+            KeychainHelper.standard.save(self.password, service: service, account: account)
+            SharedPreferences().saveValue(type: TypePreferences.setUsername(value: self.email))
+            SharedPreferences().saveValue(type: TypePreferences.setRemember(value: String.isOk))
+        }
+    }
+    
     
     func tapAction(actionTag:ActionTag) {
         let title = NSLocalizedString("errorAlert", comment: "")
         var msg = NSLocalizedString("msgAlert1", comment: "")
         let ok = NSLocalizedString("okAlert", comment: "")
         switch actionTag {
+        case .actionRemembers:
+            self.isRemembers.toggle()
+            break
         case .actionPassword:
             self.showPassword.toggle()
             break
@@ -54,7 +74,7 @@ class SignInViewmodel: BaseViewmodel {
                     let result = await network.doLogin(email: email, password: password)
                     if result.0 {
                         DispatchQueue.main.async {
-                            print("test menu")
+                            self.saveCredential()
                             self.isPresentedMenu.toggle()
                         }
                     }

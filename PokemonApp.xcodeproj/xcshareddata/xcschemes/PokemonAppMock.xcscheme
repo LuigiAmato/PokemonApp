@@ -39,17 +39,6 @@
                ReferencedContainer = "container:PokemonApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C692DC62298D6EBF00C1D82F"
-               BuildableName = "PokemonAppUITests.xctest"
-               BlueprintName = "PokemonAppUITests"
-               ReferencedContainer = "container:PokemonApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -76,6 +65,16 @@
          <EnvironmentVariable
             key = "MOCK"
             value = "true"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SERVICE"
+            value = "SERVICE"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "ACCOUNT"
+            value = "domain.com"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

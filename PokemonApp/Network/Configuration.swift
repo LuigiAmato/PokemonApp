@@ -47,5 +47,21 @@ class Configuration {
     }
     
     
+    static var service:String {
+        get {
+            if let host = ProcessInfo.processInfo.environment["SERVICE"] {
+                return host
+            }
+            return ""
+        }
+    }
     
+    static var account:String {
+        get {
+            if let host = ProcessInfo.processInfo.environment["ACCOUNT"] {
+                return host
+            }
+            return ""
+        }
+    }
 }

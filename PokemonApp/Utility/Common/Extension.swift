@@ -15,6 +15,11 @@ extension UIScreen{
    static let screenSize = UIScreen.main.bounds.size
 }
 
+extension String {
+    static let isOk = "isOk"
+    static let isKO = "isOk"
+}
+
 
 public enum ActionTag {
     case actionDone
@@ -25,4 +30,6 @@ public enum ActionTag {
     case actionExitPage
     case actionPassword
     case actionCreateUser
+    case actionRemembers
+    case actionSave
 }
