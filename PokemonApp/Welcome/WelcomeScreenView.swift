@@ -48,7 +48,7 @@ struct WelcomeScreenView: BaseView {
                 .padding(.vertical).onTapGesture {
                     self.viewModel.tapAction(actionTag: .actionPlus)
                 }
-                .navigationDestination(isPresented: $viewModel.isPresentedLogin,destination:{ SignInScreenView(viewModel: SignInViewmodel()).navigationBarHidden(true)
+                .navigationDestination(isPresented: $viewModel.isPresentedLogin,destination:{ SignInScreenView().navigationBarHidden(true)
                 })
             Spacer()
             HStack {

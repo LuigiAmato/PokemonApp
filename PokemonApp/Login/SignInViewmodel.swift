@@ -10,6 +10,9 @@ import SwiftUI
 
 
 class SignInViewmodel: BaseViewmodel {
+    
+    static var Shared:SignInViewmodel = SignInViewmodel()
+    
     var alertPage: AlertPage?
     private let network:Network = Network()
 
@@ -37,9 +40,12 @@ class SignInViewmodel: BaseViewmodel {
     func onAppear(from: any BaseView) {
         self.baseView = from
         if SharedPreferences().getValue(type: .getRemember) == String.isOk {
+            self.isRemembers.toggle()
             self.email = SharedPreferences().getValue(type: .getUsername)
-            let prova = KeychainHelper.standard.read(service: service, account: account)
-            print("")
+            let body = KeychainHelper.standard.read(service: service, account: account)
+            if body != nil {
+                self.password = String(decoding: body!, as: UTF8.self)
+            }
         }
     }
     

@@ -27,6 +27,10 @@ enum TypePreferences {
     
     func getKey()->String{
         switch self {
+        case .setUsername(_):
+            return "username"
+        case .setRemember(_):
+            return "remember"
         case .getUsername:
             return "username"
         case .getRemember:
@@ -49,9 +53,9 @@ class SharedPreferences {
     
     func getValue(type:TypePreferences) -> String{
         let preferences = UserDefaults.standard
-        if preferences.string(forKey: "access_token") != nil{
-            let access_token = preferences.string(forKey: "access_token")
-            return access_token!
+        if preferences.string(forKey:type.getKey()) != nil{
+            let value = preferences.string(forKey:type.getKey())
+            return value!
         } else {
             return ""
         }

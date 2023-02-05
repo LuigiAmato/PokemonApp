@@ -43,6 +43,7 @@ final class KeychainHelper {
     func save<T>(_ item: T, service: String, account: String) where T : Codable {
         do {
             let data = try JSONEncoder().encode(item)
+            delete(service: service, account: account)
             save(data, service: service, account: account)
         } catch {
             assertionFailure("Fail to encode item for keychain: \(error)")

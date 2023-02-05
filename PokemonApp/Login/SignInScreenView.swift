@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignInScreenView: BaseView {
     
-    @ObservedObject var viewModel: SignInViewmodel = SignInViewmodel()
+    @ObservedObject var viewModel: SignInViewmodel = SignInViewmodel.Shared
     
     var Password: some View {
         ZStack(alignment: .trailing) {
@@ -71,14 +71,19 @@ struct SignInScreenView: BaseView {
                     HStack {
                         Text("Ricordami").padding()
                         if self.viewModel.isRemembers {
-                            
+                            Circle()
+                                       .strokeBorder(Color("divider"),lineWidth: 1)
+                                       .background(Circle().foregroundColor(Color("PrimaryColor"))).frame(width: 10,height: 10).onTapGesture {
+                                           self.viewModel.tapAction(actionTag: .actionRemembers)
+                                       }
                         }
-                        Circle()
-                                   .strokeBorder(Color("divider"),lineWidth: 1)
-                                   .background(Circle().foregroundColor(Color("PrimaryColor"))).frame(width: 20,height: 20)
-                        Circle()
-                                   .strokeBorder(Color("Bgcolor"),lineWidth: 1)
-                                   .background(Circle().foregroundColor(Color("PrimaryColor"))).frame(width: 20,height: 20)
+                        else {
+                            Circle()
+                                .strokeBorder(Color("divider"),lineWidth: 1)
+                                .background(Circle().foregroundColor(Color("BgColor"))).frame(width: 10,height: 10).onTapGesture {
+                                    self.viewModel.tapAction(actionTag: .actionRemembers)
+                                }
+                        }
                         Spacer()
                     }
                     PrimaryButton(title: NSLocalizedString("buttonA", comment: "")).padding(.vertical).fullScreenCover(isPresented: $viewModel.isPresentedMenu, content: {
