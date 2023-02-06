@@ -31,6 +31,8 @@
 "deleteAlert" = "Cancel";
 "msgAlert1" = "Functionality not yet present";
 "msgAlert2" = "Unable to perform the operation";
+"compliments" = "Compliments";
+"userCreate" = "Created user. Use the data to log in";
 
 // Menu
 "Deck" = "Deck";
@@ -38,3 +40,5 @@
 "titlePage2" = "Star";
 "titlePage3" = "Settings";
 "search" = "Search";
+
+

@@ -25,6 +25,7 @@ class SignInViewmodel: BaseViewmodel {
     @Published var isPresentedReader = false
     @Published var isPresentedMenu = false
     @Published var isPresentedAlert = false
+    @Published var isPresentedAlertSheet = false
     @Published var isRemembers:Bool = false
     @Published var showPassword: Bool = false
     @Published var presentSheet:Bool = false    
@@ -60,6 +61,8 @@ class SignInViewmodel: BaseViewmodel {
         let title = NSLocalizedString("errorAlert", comment: "")
         var msg = NSLocalizedString("msgAlert1", comment: "")
         let ok = NSLocalizedString("okAlert", comment: "")
+        let msgSuccess = NSLocalizedString("userCreate", comment: "")
+        let titleSuccess = NSLocalizedString("compliments", comment: "")
         switch actionTag {
         case .actionRemembers:
             self.isRemembers.toggle()
@@ -103,19 +106,21 @@ class SignInViewmodel: BaseViewmodel {
             break
             
         case .actionCreateUser:
-            // https://developer.apple.com/forums/thread/712263
-            // https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-scrolling-pages-of-content-using-tabviewstyle
+          
             Task.init() {
                 let result = await self.network.createUser(email: self.createUser, password: self.createPassword)
                 if result.0 {
                     DispatchQueue.main.async {
-                        //self.isPresentedMenu.toggle()
+                        self.alertPage = AlertPage(title: titleSuccess, msg: msgSuccess, buttonOk: ok,buttonDelete: "Annulla")
+                        DispatchQueue.main.async {
+                            self.isPresentedAlertSheet.toggle()
+                        }
                     }
                 }
                 else {
                     self.alertPage = AlertPage(title: title, msg: result.1, buttonOk: ok)
                     DispatchQueue.main.async {
-                        //self.isPresentedAlert.toggle()
+                        self.isPresentedAlertSheet.toggle()
                     }
                 }
             }

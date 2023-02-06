@@ -30,6 +30,8 @@
 "deleteAlert" = "Cancella";
 "msgAlert1" = "Funzionalità non ancora presente";
 "msgAlert2" = "Impossibile effettuare l'operazione";
+"compliments" = "Complimenti";
+"userCreate" = "Utente creato. Usa i dati per accedere.";
 
 
 // Menu

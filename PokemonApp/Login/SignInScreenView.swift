@@ -156,6 +156,15 @@ struct SignInScreenView: BaseView {
             }.padding([.leading,.trailing],20)
             Spacer()
         }
+        .alert(isPresented:$viewModel.isPresentedAlertSheet) {
+            Alert(
+                title: Text(viewModel.alertPage!.title),
+                message: Text(viewModel.alertPage!.msg),
+                dismissButton: .default(Text(viewModel.alertPage!.buttonOk)) {
+                    self.viewModel.presentSheet.toggle()
+                }
+            )
+        }
         .presentationDetents([.medium, .large])
     }
     
