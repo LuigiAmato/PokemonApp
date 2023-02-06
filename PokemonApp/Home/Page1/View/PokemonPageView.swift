@@ -22,18 +22,12 @@ struct PokemonPageView: BaseView {
                     NavigationLink(destination: DetailPokemonView(pokemon: pokemon)) {
                         PokemonRow(pokemon: pokemon).padding().onAppear(){
                             viewModel.onItemAppear(item: pokemon)
-                        }.onLongPressGesture {
-                            print("Press")
-                            viewModel.onLongPressGesture(pokemon: pokemon)
-                        }
-                        .swipeActions(edge: .trailing) {
-                            Button(action: {
-                                print("leading")
-                            } ) {
-                                Label("Star", systemImage: "star")
-                            }
                         }
                     }
+                    .onLongPressGesture(minimumDuration:1,perform: {
+                        print("Press")
+                        viewModel.onLongPressGesture(pokemon: pokemon)
+                    })
                 }
                 .alert(isPresented: $viewModel.isPresentedAlert) {
                     Alert(title: Text(viewModel.alertPage!.title), message: Text(viewModel.alertPage!.msg), dismissButton: .default(Text(viewModel.alertPage!.buttonOk)))
@@ -46,16 +40,9 @@ struct PokemonPageView: BaseView {
                     viewModel.onAppear(from: self)
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Online") {
-                        print("Help tapped!")
-                    }.foregroundColor(Color.green)
-                }
+            .toolbar {              
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(viewModel.getPage()) {
-                        print("Help tapped!")
-                    }.foregroundColor(Color.blue)
+                    Text(viewModel.page).foregroundColor(Color.blue)
                 }
             }
             .navigationTitle("titlePage1")

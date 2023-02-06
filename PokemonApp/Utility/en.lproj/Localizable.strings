@@ -33,8 +33,6 @@
 "msgAlert2" = "Unable to perform the operation";
 
 // Menu
-"online" = "Online";
-"offline" = "Offline";
 "Deck" = "Deck";
 "titlePage1" = "Deck Pokèmon";
 "titlePage2" = "Star";

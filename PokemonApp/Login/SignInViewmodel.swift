@@ -42,17 +42,15 @@ class SignInViewmodel: BaseViewmodel {
         if SharedPreferences().getValue(type: .getRemember) == String.isOk {
             self.isRemembers.toggle()
             self.email = SharedPreferences().getValue(type: .getUsername)
-            let body = KeychainHelper.standard.read(service: service, account: account)
-            if body != nil {
-                self.password = String(decoding: body!, as: UTF8.self)
-            }
+            self.password = SharedPreferences().getValue(type: .getPassword)           
         }
     }
     
     private func saveCredential(){
         if self.isRemembers && !self.password.isEmpty && !self.email.isEmpty {
-            KeychainHelper.standard.save(self.password, service: service, account: account)
+            //KeychainHelper.standard.save(self.password, service: service, account: account)
             SharedPreferences().saveValue(type: TypePreferences.setUsername(value: self.email))
+            SharedPreferences().saveValue(type: TypePreferences.setPassword(value: self.password))
             SharedPreferences().saveValue(type: TypePreferences.setRemember(value: String.isOk))
         }
     }

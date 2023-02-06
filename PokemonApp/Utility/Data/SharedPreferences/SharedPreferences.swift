@@ -10,6 +10,8 @@ import Foundation
 enum TypePreferences {
     
     case setUsername(value:String)
+    case setPassword(value:String)
+    case getPassword
     case getUsername
     case setRemember(value:String)
     case getRemember
@@ -19,6 +21,8 @@ enum TypePreferences {
         case let .setUsername(value):
              return value
         case let .setRemember(value):
+             return value
+        case let .setPassword(value):
              return value
         default:
             return ""
@@ -31,6 +35,8 @@ enum TypePreferences {
             return "username"
         case .setRemember(_):
             return "remember"
+        case .setPassword(_),.getPassword:
+            return "pssw"      
         case .getUsername:
             return "username"
         case .getRemember:

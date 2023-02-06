@@ -15,6 +15,7 @@ class PokemonItem: Identifiable {
     public var urlData: Data?
     public var urlImage: String
     public var star: Bool?
+    public var path:Int = 0
 
     init(id: UUID, name: String, offset: Int64, urlData: Data? = nil, urlImage: String,star:Bool = false) {
         self.id = id

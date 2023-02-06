@@ -6,8 +6,6 @@
 	<dict>
 		<key>UIColorName</key>
 		<string>launchScreen</string>
-		<key>UIImageName</key>
-		<string>onboard</string>
 	</dict>
 </dict>
 </plist>

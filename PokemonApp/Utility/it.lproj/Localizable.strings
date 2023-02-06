@@ -33,8 +33,6 @@
 
 
 // Menu
-"online" = "Online";
-"offline" = "Offline";
 "titlePage1" = "Pokèmon";
 "titlePage2" = "Preferiti";
 "titlePage3" = "Impostazioni";

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct PokemonResponse: Codable, Hashable {
-    var count: Int
+    var count: Int64
     var next: String?
     var preview: String?
     var results:[Item]

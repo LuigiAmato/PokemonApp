@@ -35,10 +35,13 @@ class CoreDataManager {
         do {
             lastDeckPokemon = try persistentContainer.viewContext.fetch(fetchRequest)
             lastDeckPokemon = lastDeckPokemon.filter { $0.idUser == SessionManager.Shared.idUser }
+            var index = 0;
             let list = lastDeckPokemon.map(
                 {
                     let pokemon:Pokemon = $0
                     let pokemonItem = PokemonItem(id: pokemon.id ?? UUID(), name: pokemon.name ?? "", offset: pokemon.offset, urlData: pokemon.urlData, urlImage: pokemon.urlImage ?? "",star: pokemon.star)
+                    pokemonItem.path = index
+                    index = index + 1
                     return pokemonItem
                 }
             )

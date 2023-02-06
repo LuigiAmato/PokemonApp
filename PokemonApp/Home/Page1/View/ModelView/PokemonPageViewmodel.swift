@@ -12,6 +12,7 @@ class PokemonPageViewmodel: BaseViewmodel {
     
     var alertPage: AlertPage?
     let coreDM: CoreDataManager = CoreDataManager.shared
+    @Published var page:String = ""
     @Published var isPresentedAlert:Bool = false
     @Published var list: [PokemonItem] = []
     @Published var searchText = "" {
@@ -24,7 +25,9 @@ class PokemonPageViewmodel: BaseViewmodel {
     let limit:Int64 = 50;
     var offset:Int64 = 0;
     var callbackIsLoading: (() -> Void)?
-    
+    var next: String = ""
+    var preview: String = ""
+
     func onAppear(from: any BaseView) {
         Analytics.page(type: .PokemonPage)
         self.request()
@@ -47,32 +50,46 @@ class PokemonPageViewmodel: BaseViewmodel {
         isPresentedAlert.toggle()
     }
     
-    func getPage()-> String {
-        return "Count: \(self.listComplete.count)"
-        // "Page \((offset/limit)+1)"
-    }
-    
     private func request() {
         var listDB = self.coreDM.getDeck()
-        listDB = listDB.filter({$0.offset <= self.offset })          
-        if !listDB.isEmpty {
+        let isRequest = listDB.filter({$0.offset == self.offset }).count == 0
+        listDB = listDB.filter({$0.offset <= self.offset })
+        if !listDB.isEmpty && (!isRequest) {
+            print("Recupero da DB \(listDB.count)")
             self.listComplete = listDB
             self.searchResults(searchText: self.searchText)
         }
         else {
             self.callbackIsLoading?()
-            guard let request = Api.board(offset: self.offset, limit: self.limit).toUrlRequest() else { return }
-            self.network.request(request: request) { [weak self] (result:Result<PokemonResponse, NetworkError>) in
+            print("Nuova richiesta da serizio")
+            var request:URLRequest? = nil
+            guard let requestBoard = Api.board(offset: self.offset, limit: self.limit).toUrlRequest() else { return }
+            request = requestBoard
+            if self.next != "" {
+                print("Next Page  \(self.offset) - \(self.offset/50)")
+                guard let requestNewPage = Api.page(nextPage: self.next).toUrlRequest() else { return }
+                request = requestNewPage
+            }
+            else {
+                self.offset = self.offset + 50
+                print("Board  \(self.offset) - \(self.offset/50)")
+            }
+            
+            self.network.request(request: request!) { [weak self] (result:Result<PokemonResponse, NetworkError>) in
                 guard let self else { return }
                 switch result {
                 case .success(let response):
                     self.callbackIsLoading?()
-                    var index = 1
+                    var index = 1 + self.listComplete.count
+                    self.next = response.next ?? ""
+                    self.preview = response.preview ?? ""
                     let list = response.results.map(
-                        {
+                       {
+                           print("SAve db \(self.offset) img: \(index)")
                             let urlImage = Api.hostResources + "\(index).png"
                             let pokemon = PokemonItem.init(id:UUID(),name: $0.name, offset: self.offset,urlImage:urlImage)
                             self.coreDM.saveItem(item: pokemon)
+                            pokemon.path = index
                             index = index + 1
                             return pokemon
                         }
@@ -91,8 +108,12 @@ class PokemonPageViewmodel: BaseViewmodel {
     }
     
     func onItemAppear(item:PokemonItem){
+        let row = item.path
+        print(row)
+        self.page = "Page \((row/50)+1)"
         if self.list.last?.id == item.id && self.list.count >= 50 {
-            self.offset = self.offset + self.limit
+            print("*** Nuova richiesta **** ")
+            self.offset = self.offset + 50
             self.request()
         }
     }

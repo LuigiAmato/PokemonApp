@@ -34,10 +34,14 @@ enum Api {
         case let .detailAbility(name) :
             Api.mockName = "detailAbility.json"
             return Api.hostService + "ability/"+(name.lowercased())
+        case let .page(nextPage):
+            Api.mockName = "board.json"
+            return nextPage
         }
    
     }
     case board(offset:Int64,limit:Int64)
+    case page(nextPage:String)
     case detail(name:String)
     case detailAbility(name:String)
 
