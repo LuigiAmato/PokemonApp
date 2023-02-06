@@ -97,6 +97,8 @@
 		C692DC70298D72DA00C1D82F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4F029867D2300510D9E /* Network.swift */; };
 		C692DC72298EE50D00C1D82F /* SharedPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C692DC71298EE50D00C1D82F /* SharedPreferences.swift */; };
 		C692DC77298EE85D00C1D82F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C692DC76298EE85D00C1D82F /* File.swift */; };
+		C6DE7FED29911D7B00B60E7D /* SharedPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C692DC71298EE50D00C1D82F /* SharedPreferences.swift */; };
+		C6DE7FEE29911D8200B60E7D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C692DC76298EE85D00C1D82F /* File.swift */; };
 		C6FCD4D22986639800510D9E /* console.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D02986639800510D9E /* console.xcdatamodeld */; };
 		C6FCD4D4298663C000510D9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D3298663C000510D9E /* CoreDataManager.swift */; };
 		C6FCD4D629866A3B00510D9E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FCD4D529866A3B00510D9E /* Log.swift */; };
@@ -704,6 +706,7 @@
 				C68F62A2298D02CF00FD57C4 /* ActivityIndicator.swift in Sources */,
 				C68F62AA298D02E700FD57C4 /* MenuView.swift in Sources */,
 				C659685E298D22C800B90EC4 /* PokemonPageViewmodelTest.swift in Sources */,
+				C6DE7FED29911D7B00B60E7D /* SharedPreferences.swift in Sources */,
 				C68F6294298D029A00FD57C4 /* BaseViewmodel.swift in Sources */,
 				C68F62AB298D02EA00FD57C4 /* SettingsPageView.swift in Sources */,
 				C659685A298D10BE00B90EC4 /* SignInViewmodelTest.swift in Sources */,
@@ -716,6 +719,7 @@
 				C68F62B4298D030000FD57C4 /* SignInScreenView.swift in Sources */,
 				C68F6296298D02AC00FD57C4 /* PokemonResponse.swift in Sources */,
 				C68F6297298D02AE00FD57C4 /* PokemonItem.swift in Sources */,
+				C6DE7FEE29911D8200B60E7D /* File.swift in Sources */,
 				C68F629A298D02B400FD57C4 /* AbilityDetailResponse.swift in Sources */,
 				C6596860298D479700B90EC4 /* PokemonDetailViewmodelTest.swift in Sources */,
 				C68F62B6298D030600FD57C4 /* ContentView.swift in Sources */,
